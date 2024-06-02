@@ -1,0 +1,211 @@
+@import url("https://fonts.googleapis.com/css2?family=Bruno+Ace&display=swap");
+
+a {
+  text-decoration: none;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth_container {
+  width: 490px;
+  height: auto;
+  border-radius: 20px;
+  background-color: white;
+}
+
+.auth_upper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth_reg_upper {
+  margin: 20px 0px;
+}
+
+.auth_upper div {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  background-color: grey;
+}
+
+.auth_upper h1 {
+  font-family: "Bruno Ace", sans-serif;
+  font-weight: 500;
+}
+
+.auth_form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.group {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border-radius: 30px;
+  padding: 0px 15px;
+  background-color: #e7e7e7;
+}
+
+.group input,
+.group select {
+  width: 88%;
+  padding: 17px 0px;
+  text-align: center;
+  border-radius: 25px;
+  outline: none;
+  border: none;
+  font-size: 1.15rem;
+  background-color: #e7e7e7;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.auth_form button {
+  width: 88.3%;
+  border-radius: 30px;
+  padding: 17px 0px;
+  font-size: 1.15rem;
+  color: white;
+  background-color: #57b846;
+  border: none;
+  font-size: 1.16rem;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  cursor: pointer;
+  transition: all ease-in-out 0.3s;
+}
+
+.auth_form button:hover {
+  background-color: #333433;
+}
+
+.remember {
+  margin-top: 5px;
+}
+
+.remember input {
+  width: auto;
+  margin-right: 10px;
+}
+
+.remember span,
+.forget {
+  color: rgb(102, 98, 98);
+  font-size: 1.1rem;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.forget {
+  text-align: center;
+  margin-top: 9px;
+}
+
+.forget a {
+  color: red;
+  font-size: 1.15rem;
+  font-weight: 550;
+}
+
+.or {
+  font-size: 1.05rem;
+  font-weight: 550;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.eye{
+  padding-top: 5px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+  .auth_container {
+    width: 420px;
+  }
+
+  .auth_upper h1 {
+    font-size: 1.8rem;
+  }
+
+  .auth_form input,
+  .auth_form select,
+  .forget,
+  .remember span {
+    font-size: 1.05rem;
+  }
+
+  .forget a {
+    font-size: 1rem;
+  }
+
+  .auth_upper div {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .auth_container {
+    width: 380px;
+  }
+
+  .auth_upper h1 {
+    font-size: 1.5rem;
+  }
+
+  .remember span {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .auth_upper div {
+    width: 100px;
+    height: 100px;
+  }
+
+  .auth_upper div img {
+    width: 30px;
+  }
+
+  .auth_container {
+    width: 340px;
+  }
+
+  .auth_upper h1 {
+    font-size: 1.5rem;
+  }
+
+  .auth_upper h1 {
+    font-size: 1.4rem;
+  }
+
+  .auth_form input,
+  .forget {
+    font-size: 1rem;
+  }
+
+  .auth_form button {
+    font-size: 1.05rem;
+  }
+}
