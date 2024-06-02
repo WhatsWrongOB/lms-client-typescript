@@ -28,11 +28,10 @@ const Login = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const {  password } = formData;
+    const { password } = formData;
 
     if (password.length <= 5) toast.error("Password must be 6 characters");
-
-    toast.success("Login Successful");
+    else toast.success("Login Successful");
   };
 
   return (

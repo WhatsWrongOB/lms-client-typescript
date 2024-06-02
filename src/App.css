@@ -1,8 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Bruno+Ace&display=swap");
 
+* {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
 a {
   text-decoration: none;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 body {
@@ -76,21 +79,28 @@ body {
   border-radius: 25px;
   outline: none;
   border: none;
-  font-size: 1.15rem;
+  font-size: 1.16rem;
   background-color: #e7e7e7;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #e7e7e7 inset;
+}
+
+.group:focus-within {
+  outline: 2px solid #333433;
+  box-shadow: 0 0 5px #333433;
 }
 
 .auth_form button {
   width: 88.3%;
   border-radius: 30px;
   padding: 17px 0px;
-  font-size: 1.15rem;
+  font-size: 1.16rem;
   color: white;
   background-color: #57b846;
   border: none;
   font-size: 1.16rem;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   cursor: pointer;
   transition: all ease-in-out 0.3s;
 }
@@ -112,7 +122,6 @@ body {
 .forget {
   color: rgb(102, 98, 98);
   font-size: 1.1rem;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 .forget {
@@ -129,10 +138,9 @@ body {
 .or {
   font-size: 1.05rem;
   font-weight: 550;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
-.eye{
+.eye {
   padding-top: 5px;
   margin-right: 10px;
   cursor: pointer;

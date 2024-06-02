@@ -34,8 +34,7 @@ const Register = () => {
     const { password } = formData;
 
     if (password.length <= 5) toast.error("Password must be 6 characters");
-
-    toast.success("Registration Successful");
+    else toast.success("Login Successful");
   };
 
   return (
