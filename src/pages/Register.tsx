@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { toast } from "react-hot-toast/headless";
+import { toast } from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FaUser, FaKey, FaUserAstronaut } from "react-icons/fa";
 import { FcDepartment } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const navigate = useNavigate();
   const [active, setActive] = useState(false);
   const [formData, setFormData] = useState({
     department: "",
@@ -31,16 +32,14 @@ const Register = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const { password } = formData;
-
-    if (password.length <= 5) toast.error("Password must be 6 characters");
-    else toast.success("Login Successful");
+    toast.success("Registeration Successfull");
+    navigate("/");
   };
 
   return (
     <div className="auth_container">
       <div className="auth_upper auth_reg_upper">
-        <h1>Student Registration</h1>
+        <h1>User Registration</h1>
       </div>
       <form className="auth_form" onSubmit={handleSubmit}>
         <div className="group">
@@ -51,7 +50,7 @@ const Register = () => {
             onChange={handleChange}
             required
           >
-            <option value="">-- Select Department --</option>
+            <option value="">--- Select Depart ---</option>
             <option value="bsse">BSSE</option>
             <option value="bscs">BSCS</option>
             <option value="bsit">BSIT</option>
@@ -62,7 +61,7 @@ const Register = () => {
           <input
             type="text"
             name="username"
-            placeholder="Username *"
+            placeholder="Username"
             value={formData.username}
             onChange={handleChange}
             required
@@ -73,7 +72,7 @@ const Register = () => {
           <input
             type="text"
             name="roll"
-            placeholder="University Roll no *"
+            placeholder="Roll number"
             value={formData.roll}
             onChange={handleChange}
             required
@@ -84,7 +83,7 @@ const Register = () => {
           <input
             type={active ? "text" : "password"}
             name="password"
-            placeholder="Password *"
+            placeholder="Password"
             value={formData.password}
             onChange={handleChange}
             required
@@ -96,7 +95,7 @@ const Register = () => {
         <button type="submit">Register</button>
       </form>
       <p className="forget">
-        Already have an account? <Link to="/">login</Link>
+        Already have an account ? <Link to="/">login</Link>
       </p>
     </div>
   );

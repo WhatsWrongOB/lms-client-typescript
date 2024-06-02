@@ -40,7 +40,7 @@ const Forget = () => {
             onChange={handleChange}
             required
           >
-            <option value="">-- Select Department --</option>
+            <option value="">--- Select Depart ---</option>
             <option value="bsse">BSSE</option>
             <option value="bscs">BSCS</option>
             <option value="bsit">BSIT</option>
@@ -52,7 +52,7 @@ const Forget = () => {
           <input
             type="text"
             name="roll"
-            placeholder="Your University Roll no *"
+            placeholder="Your Roll number"
             value={formData.roll}
             onChange={handleChange}
             required
@@ -61,7 +61,7 @@ const Forget = () => {
         <button type="submit">Submit</button>
       </form>
       <p className="forget">
-        Not Found? <Link to="/">Go Back</Link>
+        Not Found ? <Link to="/">Go Back</Link>
       </p>
     </div>
   );

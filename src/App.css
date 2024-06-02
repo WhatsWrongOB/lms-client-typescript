@@ -109,30 +109,25 @@ input:-webkit-autofill {
   background-color: #333433;
 }
 
-.remember {
-  margin-top: 5px;
+.auth_form button:focus {
+  transform: scale(0.97);
 }
 
-.remember input {
-  width: auto;
-  margin-right: 10px;
-}
-
-.remember span,
 .forget {
   color: rgb(102, 98, 98);
   font-size: 1.1rem;
-}
-
-.forget {
   text-align: center;
-  margin-top: 9px;
 }
 
 .forget a {
   color: red;
   font-size: 1.15rem;
   font-weight: 550;
+  transition: all ease-in-out 0.1s;
+}
+
+.forget a:focus {
+  color: green;
 }
 
 .or {
@@ -157,8 +152,7 @@ input:-webkit-autofill {
 
   .auth_form input,
   .auth_form select,
-  .forget,
-  .remember span {
+  .forget {
     font-size: 1.05rem;
   }
 
@@ -172,17 +166,13 @@ input:-webkit-autofill {
   }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 420px) {
   .auth_container {
     width: 380px;
   }
 
   .auth_upper h1 {
     font-size: 1.5rem;
-  }
-
-  .remember span {
-    font-size: 1rem;
   }
 }
 
