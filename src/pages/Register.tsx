@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
 import { toast } from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FaUser, FaKey, FaUserAstronaut } from "react-icons/fa";
@@ -6,6 +6,7 @@ import { FcDepartment } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
+
   const navigate = useNavigate();
   const [active, setActive] = useState(false);
   const [formData, setFormData] = useState({
@@ -20,7 +21,7 @@ const Register = () => {
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
@@ -39,7 +40,7 @@ const Register = () => {
   return (
     <div className="auth_container">
       <div className="auth_upper auth_reg_upper">
-        <h1>User Registration</h1>
+        <h1>Student Registration</h1>
       </div>
       <form className="auth_form" onSubmit={handleSubmit}>
         <div className="group">
@@ -56,6 +57,7 @@ const Register = () => {
             <option value="bsit">BSIT</option>
           </select>
         </div>
+
         <div className="group">
           <FaUser size={15} />
           <input
@@ -64,9 +66,11 @@ const Register = () => {
             placeholder="Username"
             value={formData.username}
             onChange={handleChange}
+            autoComplete="off"
             required
           />
         </div>
+
         <div className="group">
           <FaUserAstronaut size={15} />
           <input
@@ -75,9 +79,11 @@ const Register = () => {
             placeholder="Roll number"
             value={formData.roll}
             onChange={handleChange}
+            autoComplete="off"
             required
           />
         </div>
+
         <div className="group">
           <FaKey size={15} />
           <input

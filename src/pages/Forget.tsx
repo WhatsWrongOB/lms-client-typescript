@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { toast } from "react-hot-toast";
 
 const Forget = () => {
+
   const [formData, setFormData] = useState({
     department: "",
     roll: "",
@@ -55,6 +56,7 @@ const Forget = () => {
             placeholder="Your Roll number"
             value={formData.roll}
             onChange={handleChange}
+            autoComplete="off"
             required
           />
         </div>
