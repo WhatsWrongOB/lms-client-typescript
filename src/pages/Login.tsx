@@ -14,6 +14,7 @@ interface UserDetails {
 }
 
 const Login = () => {
+
   const navigate = useNavigate();
   const [active, setActive] = useState<boolean>(false);
   const [formData, setFormData] = useState<UserDetails>({
@@ -52,7 +53,7 @@ const Login = () => {
       );
       if (data?.success) {
         toast.success(data.message);
-        navigate("/");
+        navigate("/main");
       }
     } catch (error: any) {
       toast.error(error.response.data.message);
