@@ -13,7 +13,7 @@ const Forget = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        `${import.meta.env.VITE_SERVER}/api/reset-password`,
+        `${import.meta.env.VITE_SERVER}/api/forget-password`,
         { email },
         {
           headers: {
