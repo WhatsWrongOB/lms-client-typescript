@@ -1,34 +1,26 @@
 import { useState } from "react";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { FaUserAstronaut } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
-import { FaKey } from "react-icons/fa";
 import axios from "axios";
 import { ClipLoader } from "react-spinners";
 
-const Reset = () => {
-  const searchParams = new URLSearchParams(useLocation().search);
-  const token = searchParams.get("token");
-
+const ForgetForm = () => {
+    
   const navigate = useNavigate();
+  const [email, setEmail] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-  const [active, setActive] = useState<boolean>(false);
-  const [newPassword, setNewPassword] = useState<string>("");
-
-  const handleShowPass = (): void => {
-    setActive(!active);
-  };
 
   const handleSubmit = async (
     e: React.FormEvent<HTMLFormElement>
   ): Promise<void> => {
     e.preventDefault();
     try {
-      setLoading(true)
+      setLoading(true);
 
       const { data } = await axios.post(
-        `${import.meta.env.VITE_SERVER}/api/reset-password`,
-        { token, newPassword },
+        `${import.meta.env.VITE_SERVER}/api/forget-password`,
+        { email },
         {
           headers: {
             "Content-Type": "application/json",
@@ -37,41 +29,38 @@ const Reset = () => {
       );
       if (data?.success) {
         toast.success(data.message);
-        navigate("/");
+        navigate("/forget");
       }
     } catch (error: any) {
       toast.error(error.response.data.message);
-    }
-    finally{
-      setLoading(false)
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="auth_container">
       <div className="auth_upper auth_reg_upper">
-        <h1>Reset Password</h1>
+        <h1>Forget Password</h1>
       </div>
       <form className="auth_form" onSubmit={handleSubmit}>
         <div className="group">
-          <FaKey size={15} />
+          <FaUserAstronaut size={15} />
           <input
-            type={active ? "text" : "password"}
-            name="password"
-            placeholder="Password"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
+            type="text"
+            name="email"
+            placeholder="Your Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            autoComplete="off"
             required
           />
-          <span className="eye" onClick={handleShowPass}>
-            {active ? <FaEyeSlash /> : <FaEye />}
-          </span>
         </div>
         <button type="submit">
-        {loading ? (
+          {loading ? (
             <ClipLoader color="white" loading={loading} size={10} />
           ) : (
-            "Reset"
+            "Submit"
           )}
         </button>
       </form>
@@ -82,4 +71,4 @@ const Reset = () => {
   );
 };
 
-export default Reset;
+export default ForgetForm;

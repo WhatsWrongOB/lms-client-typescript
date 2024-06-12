@@ -60,7 +60,7 @@ const Register = () => {
       );
       if (data?.success) {
         toast.success(data.message);
-        navigate("/login");
+        navigate("/verify");
       }
     } catch (error: any) {
       toast.error(error.response.data.message);

@@ -5,6 +5,9 @@ import Reset from "./pages/Reset";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import Home from "./pages/Home";
+import Verify from "./pages/Verify";
+import VerifyForm from "./pages/VerifyForm";
+import ForgetForm from "./pages/ForgetForm";
 
 const App = () => {
   return (
@@ -14,7 +17,10 @@ const App = () => {
         <Route path="/" element={<Login />} />
         <Route path="/main" element={<Home />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/forget-password" element={<Forget />} />
+        <Route path="/verify" element={<Verify />}/>
+        <Route path="/verify-email" element={<VerifyForm />}/>
+        <Route path="/forget" element={<Forget />} />
+        <Route path="/forget-password" element={<ForgetForm />} />
         <Route path="/reset-password" element={<Reset />} />
       </Routes>
     </Router>
