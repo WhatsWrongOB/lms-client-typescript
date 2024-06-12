@@ -4,19 +4,26 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FaUser, FaKey, FaUserAstronaut } from "react-icons/fa";
 import { FcDepartment } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+
+interface UserDetails {
+  username: string;
+  email: string;
+  department: string;
+  password: string;
+}
 
 const Register = () => {
-
   const navigate = useNavigate();
-  const [active, setActive] = useState(false);
-  const [formData, setFormData] = useState({
+  const [active, setActive] = useState<boolean>(false);
+  const [formData, setFormData] = useState<UserDetails>({
     department: "",
     username: "",
-    roll: "",
+    email: "",
     password: "",
   });
 
-  const handleShowPass = () => {
+  const handleShowPass = ():void => {
     setActive(!active);
   };
 
@@ -30,11 +37,30 @@ const Register = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     e.preventDefault();
 
-    toast.success("Registeration Successfull");
-    navigate("/");
+    const { department, username, email, password } = formData;
+
+    try {
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_SERVER}/api/register`,
+        { department, username, email, password },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (data?.success) {
+        toast.success(data.message);
+        navigate("/login");
+      }
+    } catch (error: any) {
+      toast.error(error.response.data.message);
+    }
   };
 
   return (
@@ -74,10 +100,10 @@ const Register = () => {
         <div className="group">
           <FaUserAstronaut size={15} />
           <input
-            type="text"
-            name="roll"
-            placeholder="Roll number"
-            value={formData.roll}
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={formData.email}
             onChange={handleChange}
             autoComplete="off"
             required

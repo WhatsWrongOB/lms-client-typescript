@@ -5,18 +5,24 @@ import user from "/public/user.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { FcDepartment } from "react-icons/fc";
+import axios from "axios";
+
+interface UserDetails {
+  email: string;
+  department: string;
+  password: string;
+}
 
 const Login = () => {
-
   const navigate = useNavigate();
-  const [active, setActive] = useState(false);
-  const [formData, setFormData] = useState({
-    username: "",
+  const [active, setActive] = useState<boolean>(false);
+  const [formData, setFormData] = useState<UserDetails>({
+    email: "",
     department: "",
     password: "",
   });
 
-  const handleShowPass = () => {
+  const handleShowPass = ():void => {
     setActive(!active);
   };
 
@@ -30,12 +36,27 @@ const Login = () => {
     }));
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
+    const { department, email, password } = formData;
 
-    toast.success("Login Successful");
-
-    navigate("/")
+    try {
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_SERVER}/api/login`,
+        { department, email, password },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (data?.success) {
+        toast.success(data.message);
+        navigate("/");
+      }
+    } catch (error: any) {
+      toast.error(error.response.data.message);
+    }
   };
 
   return (
@@ -65,10 +86,10 @@ const Login = () => {
         <div className="group">
           <FaUser size={15} />
           <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            value={formData.username}
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={formData.email}
             onChange={handleChange}
             autoComplete="off"
             required
@@ -93,7 +114,7 @@ const Login = () => {
         <button type="submit">Login</button>
       </form>
       <p className="forget">
-        Forgot Password ? <Link to="/forget">click here</Link>
+        Forgot Password ? <Link to="/forget-password">click here</Link>
       </p>
       <p className="forget">
         Don't have an account ? <Link to="/register">register here</Link>

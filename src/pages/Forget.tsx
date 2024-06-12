@@ -1,30 +1,32 @@
 import { useState } from "react";
 import { FaUserAstronaut } from "react-icons/fa";
-import { FcDepartment } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import axios from "axios";
 
 const Forget = () => {
+  const [email, setEmail] = useState<string>("");
 
-  const [formData, setFormData] = useState({
-    department: "",
-    roll: "",
-  });
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     e.preventDefault();
-
-    toast.success(formData.roll);
+    try {
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_SERVER}/api/reset-password`,
+        { email },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (data?.success) {
+        toast.success(data.message);
+      }
+    } catch (error: any) {
+      toast.error(error.response.data.message);
+    }
   };
 
   return (
@@ -34,28 +36,13 @@ const Forget = () => {
       </div>
       <form className="auth_form" onSubmit={handleSubmit}>
         <div className="group">
-          <FcDepartment color="black" />
-          <select
-            name="department"
-            value={formData.department}
-            onChange={handleChange}
-            required
-          >
-            <option value="">--- Select Depart ---</option>
-            <option value="bsse">BSSE</option>
-            <option value="bscs">BSCS</option>
-            <option value="bsit">BSIT</option>
-          </select>
-        </div>
-
-        <div className="group">
           <FaUserAstronaut size={15} />
           <input
             type="text"
-            name="roll"
-            placeholder="Your Roll number"
-            value={formData.roll}
-            onChange={handleChange}
+            name="email"
+            placeholder="Your Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             autoComplete="off"
             required
           />
