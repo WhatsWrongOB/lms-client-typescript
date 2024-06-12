@@ -4,6 +4,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FaUser, FaKey, FaUserAstronaut } from "react-icons/fa";
 import { FcDepartment } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
 import axios from "axios";
 
 interface UserDetails {
@@ -14,9 +15,9 @@ interface UserDetails {
 }
 
 const Register = () => {
-  
   const navigate = useNavigate();
   const [active, setActive] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const [formData, setFormData] = useState<UserDetails>({
     department: "",
     username: "",
@@ -24,7 +25,7 @@ const Register = () => {
     password: "",
   });
 
-  const handleShowPass = ():void => {
+  const handleShowPass = (): void => {
     setActive(!active);
   };
 
@@ -46,6 +47,8 @@ const Register = () => {
     const { department, username, email, password } = formData;
 
     try {
+      setLoading(true);
+
       const { data } = await axios.post(
         `${import.meta.env.VITE_SERVER}/api/register`,
         { department, username, email, password },
@@ -61,6 +64,8 @@ const Register = () => {
       }
     } catch (error: any) {
       toast.error(error.response.data.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -125,7 +130,13 @@ const Register = () => {
             {active ? <FaEyeSlash /> : <FaEye />}
           </span>
         </div>
-        <button type="submit">Register</button>
+        <button type="submit">
+          {loading ? (
+            <ClipLoader color="white" loading={loading} size={10} />
+          ) : (
+            "Register"
+          )}
+        </button>
       </form>
       <p className="forget">
         Already have an account ? <Link to="/">login</Link>

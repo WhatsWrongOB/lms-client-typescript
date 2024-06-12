@@ -4,12 +4,14 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { FaKey } from "react-icons/fa";
 import axios from "axios";
+import { ClipLoader } from "react-spinners";
 
 const Reset = () => {
   const searchParams = new URLSearchParams(useLocation().search);
   const token = searchParams.get("token");
 
   const navigate = useNavigate();
+  const [loading, setLoading] = useState<boolean>(false);
   const [active, setActive] = useState<boolean>(false);
   const [newPassword, setNewPassword] = useState<string>("");
 
@@ -22,6 +24,8 @@ const Reset = () => {
   ): Promise<void> => {
     e.preventDefault();
     try {
+      setLoading(true)
+
       const { data } = await axios.post(
         `${import.meta.env.VITE_SERVER}/api/reset-password`,
         { token, newPassword },
@@ -38,7 +42,9 @@ const Reset = () => {
     } catch (error: any) {
       toast.error(error.response.data.message);
     }
-    toast.success(newPassword);
+    finally{
+      setLoading(false)
+    }
   };
 
   return (
@@ -61,7 +67,13 @@ const Reset = () => {
             {active ? <FaEyeSlash /> : <FaEye />}
           </span>
         </div>
-        <button type="submit">Reset</button>
+        <button type="submit">
+        {loading ? (
+            <ClipLoader color="white" loading={loading} size={10} />
+          ) : (
+            "Reset"
+          )}
+        </button>
       </form>
       <p className="forget">
         Not Found ? <Link to="/">Go Back</Link>

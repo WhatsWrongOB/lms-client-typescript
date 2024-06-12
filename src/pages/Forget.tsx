@@ -3,15 +3,19 @@ import { FaUserAstronaut } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import axios from "axios";
+import { ClipLoader } from "react-spinners";
 
 const Forget = () => {
   const [email, setEmail] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleSubmit = async (
     e: React.FormEvent<HTMLFormElement>
   ): Promise<void> => {
     e.preventDefault();
     try {
+      setLoading(true);
+
       const { data } = await axios.post(
         `${import.meta.env.VITE_SERVER}/api/forget-password`,
         { email },
@@ -26,6 +30,8 @@ const Forget = () => {
       }
     } catch (error: any) {
       toast.error(error.response.data.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -47,7 +53,13 @@ const Forget = () => {
             required
           />
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit">
+          {loading ? (
+            <ClipLoader color="white" loading={loading} size={10} />
+          ) : (
+            "Submit"
+          )}
+        </button>
       </form>
       <p className="forget">
         Not Found ? <Link to="/">Go Back</Link>

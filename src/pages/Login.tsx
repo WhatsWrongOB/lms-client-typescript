@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { FcDepartment } from "react-icons/fc";
 import axios from "axios";
+import { ClipLoader } from "react-spinners";
 
 interface UserDetails {
   email: string;
@@ -14,20 +15,19 @@ interface UserDetails {
 }
 
 const Login = () => {
-
   const navigate = useNavigate();
   const [active, setActive] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const [formData, setFormData] = useState<UserDetails>({
     email: "",
     department: "",
     password: "",
   });
 
-  const handleShowPass = ():void => {
+  const handleShowPass = (): void => {
     setActive(!active);
   };
 
-  
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -43,6 +43,8 @@ const Login = () => {
     const { department, email, password } = formData;
 
     try {
+      setLoading(true);
+
       const { data } = await axios.post(
         `${import.meta.env.VITE_SERVER}/api/login`,
         { department, email, password },
@@ -58,6 +60,8 @@ const Login = () => {
       }
     } catch (error: any) {
       toast.error(error.response.data.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -113,7 +117,13 @@ const Login = () => {
           </span>
         </div>
 
-        <button type="submit">Login</button>
+        <button type="submit">
+          {loading ? (
+            <ClipLoader color="white" loading={loading} size={10} />
+          ) : (
+            "Login"
+          )}
+        </button>
       </form>
       <p className="forget">
         Forgot Password ? <Link to="/forget-password">click here</Link>
