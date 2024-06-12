@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Verify from "./pages/forms/Verify";
 import VerifyForm from "./pages/forms/VerifyForm";
 import ForgetForm from "./pages/forms/ForgetForm";
+import Error from "./pages/Error";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/forget" element={<Forget />} />
         <Route path="/forget-password" element={<ForgetForm />} />
         <Route path="/reset-password" element={<Reset />} />
+        <Route path="*" element={<Error />} />
       </Routes>
     </Router>
   );
