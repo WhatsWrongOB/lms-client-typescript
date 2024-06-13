@@ -1,5 +1,46 @@
+import { useEffect, FormEvent } from "react";
+import axios from "axios";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const getUsers = async (): Promise<void> => {
+      try {
+        const { data } = await axios.get(
+          `${import.meta.env.VITE_SERVER}/api/users`,
+          {
+            withCredentials: true,
+          }
+        );
+        console.log(data);
+      } catch (error: any) {
+        toast.error(error.response.data.message);
+      }
+    };
+    getUsers();
+  }, []);
+
+  const logout = async (): Promise<void> => {
+    try {
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_SERVER}/api/logout`,
+        {
+          withCredentials: true,
+        }
+      );
+
+      if (data?.success) {
+        toast.success(data.message);
+        navigate("/");
+      }
+    } catch (error: any) {
+      toast.error(error.response.data.message);
+    }
+  };
+
   return (
     <section>
       <nav className="pre_nav">
@@ -13,7 +54,7 @@ const Home = () => {
             Updates
           </li>
         </ul>
-        <div className="profile">
+        <div className="profile" onClick={logout}>
           <p>Obaid</p>|
           <div className="profile_circle">
             <img
@@ -95,7 +136,7 @@ const Home = () => {
         </div>
       </main>
     </section>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

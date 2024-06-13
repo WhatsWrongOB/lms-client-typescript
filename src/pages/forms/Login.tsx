@@ -49,6 +49,7 @@ const Login = () => {
         `${import.meta.env.VITE_SERVER}/api/login`,
         { department, email, password },
         {
+          withCredentials: true,
           headers: {
             "Content-Type": "application/json",
           },
@@ -97,7 +98,6 @@ const Login = () => {
             placeholder="Email"
             value={formData.email}
             onChange={handleChange}
-            autoComplete="off"
             required
           />
         </div>
