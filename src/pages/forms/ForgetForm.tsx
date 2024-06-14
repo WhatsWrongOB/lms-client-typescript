@@ -32,7 +32,7 @@ const ForgetForm = () => {
         navigate("/forget");
       }
     } catch (error: any) {
-      toast.error(error.response.data.message);
+      toast.error(error.response.data.message || "Server not responding");
     } finally {
       setLoading(false);
     }
