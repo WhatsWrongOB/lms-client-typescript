@@ -63,7 +63,7 @@ const Register = () => {
         navigate("/verify");
       }
     } catch (error: any) {
-      toast.error(error.response.data.message || "Server not responding");
+      toast.error(error.response.data.message);
     } finally {
       setLoading(false);
     }

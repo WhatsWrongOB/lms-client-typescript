@@ -6,7 +6,6 @@ import axios from "axios";
 import { ClipLoader } from "react-spinners";
 
 const ForgetForm = () => {
-    
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
@@ -32,7 +31,7 @@ const ForgetForm = () => {
         navigate("/forget");
       }
     } catch (error: any) {
-      toast.error(error.response.data.message || "Server not responding");
+      toast.error(error.response.data.message);
     } finally {
       setLoading(false);
     }

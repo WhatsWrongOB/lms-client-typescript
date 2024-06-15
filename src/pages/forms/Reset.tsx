@@ -24,7 +24,7 @@ const Reset = () => {
   ): Promise<void> => {
     e.preventDefault();
     try {
-      setLoading(true)
+      setLoading(true);
 
       const { data } = await axios.post(
         `${import.meta.env.VITE_SERVER}/api/reset-password`,
@@ -40,10 +40,9 @@ const Reset = () => {
         navigate("/");
       }
     } catch (error: any) {
-      toast.error(error.response.data.message || "Server not responding");
-    }
-    finally{
-      setLoading(false)
+      toast.error(error.response.data.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -68,7 +67,7 @@ const Reset = () => {
           </span>
         </div>
         <button type="submit">
-        {loading ? (
+          {loading ? (
             <ClipLoader color="white" loading={loading} size={10} />
           ) : (
             "Reset"

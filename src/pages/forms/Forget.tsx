@@ -1,5 +1,3 @@
-
-
 const Forget = () => {
   return (
     <main className="verify">
