@@ -7,6 +7,7 @@ import { toast } from "react-hot-toast";
 import { FcDepartment } from "react-icons/fc";
 import axios from "axios";
 import { ClipLoader } from "react-spinners";
+import { useAuth } from "../../context/authContext";
 
 interface UserDetails {
   email: string;
@@ -15,6 +16,8 @@ interface UserDetails {
 }
 
 const Login = () => {
+
+  const { setAuthToken } = useAuth();
   const navigate = useNavigate();
   const [active, setActive] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
@@ -57,6 +60,7 @@ const Login = () => {
       );
       if (data?.success) {
         toast.success(data.message);
+        setAuthToken(data.token)
         navigate("/home");
       }
     } catch (error: any) {
@@ -83,7 +87,7 @@ const Login = () => {
             onChange={handleChange}
             required
           >
-            <option value="">--- Select Depart ---</option>
+            <option>--- Select Depart ---</option>
             <option value="bsse">BSSE</option>
             <option value="bscs">BSCS</option>
             <option value="bsit">BSIT</option>

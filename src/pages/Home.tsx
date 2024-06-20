@@ -2,26 +2,31 @@ import { useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/authContext";
 
 const Home = () => {
   const navigate = useNavigate();
+  const { token, removeAuthToken } = useAuth();
 
   useEffect(() => {
-    const getUsers = async (): Promise<void> => {
-      try {
-        const { data } = await axios.get(
-          `${import.meta.env.VITE_SERVER}/api/users`,
-          {
-            withCredentials: true,
-          }
-        );
-        console.log(data);
-      } catch (error: any) {
-        toast.error(error.response.data.message);
-      }
-    };
-    getUsers();
-  }, []);
+    if (!token) navigate("/");
+    else {
+      const getUsers = async () => {
+        try {
+          const { data } = await axios.get(
+            `${import.meta.env.VITE_SERVER}/api/users`,
+            {
+              withCredentials: true,
+            }
+          );
+          console.log(data);
+        } catch (error: any) {
+          toast.error(error?.response?.data.message);
+        }
+      };
+      getUsers();
+    }
+  }, [token, navigate]);
 
   const logout = async (): Promise<void> => {
     try {
@@ -33,11 +38,12 @@ const Home = () => {
       );
 
       if (data?.success) {
+        removeAuthToken();
         toast.success(data.message);
         navigate("/");
       }
     } catch (error: any) {
-      toast.error(error.response.data.message || "Server not responding");
+      toast.error(error.response.data.message);
     }
   };
 
