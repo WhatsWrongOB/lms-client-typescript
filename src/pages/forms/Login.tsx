@@ -2,7 +2,7 @@ import { useState, ChangeEvent, FormEvent } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { FaUser, FaKey } from "react-icons/fa";
 import user from "/public/user.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, json, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { FcDepartment } from "react-icons/fc";
 import axios from "axios";
@@ -16,7 +16,6 @@ interface UserDetails {
 }
 
 const Login = () => {
-
   const { setAuthToken } = useAuth();
   const navigate = useNavigate();
   const [active, setActive] = useState<boolean>(false);
@@ -59,8 +58,9 @@ const Login = () => {
         }
       );
       if (data?.success) {
+        setAuthToken(data.token);
+        localStorage.setItem("CurrentUser", JSON.stringify(data.user));
         toast.success(data.message);
-        setAuthToken(data.token)
         navigate("/home");
       }
     } catch (error: any) {

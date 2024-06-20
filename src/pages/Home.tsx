@@ -3,38 +3,31 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/authContext";
+import { Link } from "react-router-dom";
 
-interface User {
-  _id: string;
-  username: string;
+export interface User {
+  id: string;
   email: string;
-  profilePicture: string;
+  username: string;
   department: string;
-  isVerified: boolean;
   isAdmin: boolean;
+  profilePicture: string;
 }
 
 const Home = () => {
   const navigate = useNavigate();
   const { removeAuthToken } = useAuth();
 
-  const [users, setUsers] = useState<User[]>([]);
+  const [toogleMenu, setToogleMenu] = useState(false);
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
+
+  const handleToogle = (): void => {
+    setToogleMenu((prev) => !prev);
+  };
 
   useEffect(() => {
-    const getUsers = async () => {
-      try {
-        const { data } = await axios.get(
-          `${import.meta.env.VITE_SERVER}/api/users`,
-          {
-            withCredentials: true,
-          }
-        );
-        setUsers(data);
-      } catch (error: any) {
-        toast.error(error.response?.data.message);
-      }
-    };
-    getUsers();
+    const storedUser = localStorage.getItem("CurrentUser");
+    if (storedUser) setCurrentUser(JSON.parse(storedUser));
   }, []);
 
   const logout = async (): Promise<void> => {
@@ -48,6 +41,7 @@ const Home = () => {
 
       if (data?.success) {
         removeAuthToken();
+        localStorage.removeItem("CurrentUser");
         toast.success(data.message);
         navigate("/");
       }
@@ -55,6 +49,7 @@ const Home = () => {
       toast.error(error.response.data.message);
     }
   };
+
 
   return (
     <section>
@@ -69,12 +64,14 @@ const Home = () => {
             Updates
           </li>
         </ul>
-        <div className="profile" onClick={logout}>
-          <p>{users && users[0]?.username} </p>|
+        <div className="profile" onClick={handleToogle}>
+          <p>{currentUser?.username} </p>|
           <div className="profile_circle">
-            <img src={users && users[0]?.profilePicture} alt="obaid" />
+            <img src={currentUser?.profilePicture} alt="obaid" />
           </div>
-          <div className="dropdown_menu">
+          <div
+            className={toogleMenu ? "dropdown_menu active" : "dropdown_menu"}
+          >
             <ul>
               <li>
                 <i
@@ -85,16 +82,18 @@ const Home = () => {
                 ></i>
                 Profile
               </li>
-              <li>
-                <i
-                  className="fa fa-cogs fa-sm fa-fw me-2 text-gray-400"
-                  style={{
-                    color: "#d1d3e2",
-                  }}
-                ></i>
-                Security
-              </li>
-              <li>
+              <Link to="/update-password">
+                <li>
+                  <i
+                    className="fa fa-cogs fa-sm fa-fw me-2 text-gray-400"
+                    style={{
+                      color: "#d1d3e2",
+                    }}
+                  ></i>
+                  Security
+                </li>
+              </Link>
+              <li onClick={logout}>
                 <i
                   className="fa fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"
                   style={{

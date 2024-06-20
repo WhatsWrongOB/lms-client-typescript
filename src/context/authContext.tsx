@@ -6,6 +6,7 @@ import {
   useContext,
 } from "react";
 
+
 interface AuthContextType {
   token: string | null;
   setAuthToken: (token: string | null) => void;
@@ -19,7 +20,6 @@ export const AuthContextProvider = ({
 }: {
   children: ReactNode;
 }): JSX.Element => {
-  
   const [token, setToken] = useState<string | null>(
     localStorage.getItem("token")
   );
@@ -45,7 +45,13 @@ export const AuthContextProvider = ({
   }, []);
 
   return (
-    <AuthContext.Provider value={{ token, setAuthToken, removeAuthToken }}>
+    <AuthContext.Provider
+      value={{
+        token,
+        setAuthToken,
+        removeAuthToken,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

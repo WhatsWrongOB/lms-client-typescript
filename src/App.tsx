@@ -1,13 +1,9 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 
 import Home from "./pages/Home";
 import FormApp from "./pages/forms";
-import ProtectedRoute from "./routes";
+import { ProtectedRoute } from "./routes";
 
 const App = () => {
   return (
