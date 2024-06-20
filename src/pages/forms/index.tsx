@@ -1,6 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import { ProtectedRoute } from "../../routes";
+import {  ProtectedRoute } from "../../routes";
 
 const Login = lazy(() => import("./Login"));
 const Register = lazy(() => import("./Register"));

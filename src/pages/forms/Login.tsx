@@ -1,13 +1,12 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { FaUser, FaKey } from "react-icons/fa";
-import user from "/public/user.svg";
-import { Link, json, useNavigate } from "react-router-dom";
+import user from "/user.svg";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { FcDepartment } from "react-icons/fc";
 import axios from "axios";
 import { ClipLoader } from "react-spinners";
-import { useAuth } from "../../context/authContext";
 
 interface UserDetails {
   email: string;
@@ -16,7 +15,6 @@ interface UserDetails {
 }
 
 const Login = () => {
-  const { setAuthToken } = useAuth();
   const navigate = useNavigate();
   const [active, setActive] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
@@ -44,29 +42,32 @@ const Login = () => {
     e.preventDefault();
     const { department, email, password } = formData;
 
-    try {
-      setLoading(true);
+    if (!department) toast.error("Department Required");
+    else {
+      try {
+        setLoading(true);
 
-      const { data } = await axios.post(
-        `${import.meta.env.VITE_SERVER}/api/login`,
-        { department, email, password },
-        {
-          withCredentials: true,
-          headers: {
-            "Content-Type": "application/json",
-          },
+        const { data } = await axios.post(
+          `${import.meta.env.VITE_SERVER}/api/login`,
+          { department, email, password },
+          {
+            withCredentials: true,
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        if (data?.success) {
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("CurrentUser", JSON.stringify(data.user));
+          toast.success(data.message);
+          navigate("/home");
         }
-      );
-      if (data?.success) {
-        setAuthToken(data.token);
-        localStorage.setItem("CurrentUser", JSON.stringify(data.user));
-        toast.success(data.message);
-        navigate("/home");
+      } catch (error: any) {
+        toast.error(error.response.data.message);
+      } finally {
+        setLoading(false);
       }
-    } catch (error: any) {
-      toast.error(error.response.data.message);
-    } finally {
-      setLoading(false);
     }
   };
 

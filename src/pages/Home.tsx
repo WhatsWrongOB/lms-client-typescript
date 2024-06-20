@@ -1,9 +1,9 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/authContext";
 import { Link } from "react-router-dom";
+import Hamburger from "hamburger-react";
 
 export interface User {
   id: string;
@@ -16,13 +16,16 @@ export interface User {
 
 const Home = () => {
   const navigate = useNavigate();
-  const { removeAuthToken } = useAuth();
-
-  const [toogleMenu, setToogleMenu] = useState(false);
+  const [toggleDropDown, setToggleDropDown] = useState(false);
+  const [toggleMenu, setToggleMenu] = useState(false);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
 
   const handleToogle = (): void => {
-    setToogleMenu((prev) => !prev);
+    setToggleDropDown((prev) => !prev);
+  };
+
+  const handleMenuToggle = (): void => {
+    setToggleMenu((prev) => !prev);
   };
 
   useEffect(() => {
@@ -40,7 +43,7 @@ const Home = () => {
       );
 
       if (data?.success) {
-        removeAuthToken();
+        localStorage.removeItem("token");
         localStorage.removeItem("CurrentUser");
         toast.success(data.message);
         navigate("/");
@@ -49,7 +52,6 @@ const Home = () => {
       toast.error(error.response.data.message);
     }
   };
-
 
   return (
     <section>
@@ -70,7 +72,9 @@ const Home = () => {
             <img src={currentUser?.profilePicture} alt="obaid" />
           </div>
           <div
-            className={toogleMenu ? "dropdown_menu active" : "dropdown_menu"}
+            className={
+              toggleDropDown ? "dropdown_menu active" : "dropdown_menu"
+            }
           >
             <ul>
               <li>
@@ -116,14 +120,16 @@ const Home = () => {
           </div>
         </div>
 
-        <ul>
+        <ul className={toggleMenu ? "menu_active" : ""}>
           <li>Home</li>
+          {currentUser?.isAdmin ? <li>Dashboard</li> : null}
           <li>Academics</li>
-          <li>Application</li>
-          <li>Timetables</li>
           <li>Learning</li>
           <li>Feedback</li>
         </ul>
+        <div className="hamburger" onClick={handleMenuToggle}>
+          <Hamburger color="white" size={16} />
+        </div>
       </nav>
 
       <main className="main">
