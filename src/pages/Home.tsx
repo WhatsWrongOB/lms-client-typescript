@@ -1,10 +1,35 @@
+import { useEffect } from "react";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import axios from "axios";
+import { useGetToken } from "../hooks";
+import { toast } from "react-hot-toast";
 
 const Home = () => {
+  const token = useGetToken();
+
+  useEffect(() => {
+    const getUsers = async (): Promise<void> => {
+      try {
+        const { data } = await axios.get(
+          `${import.meta.env.VITE_SERVER}/api/users`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log(data);
+      } catch (error: any) {
+        toast.error(error.response.data.message);
+      }
+    };
+    getUsers();
+  }, []);
+
   return (
     <>
-    <Navbar/>
+      <Navbar />
       <section className="home_section">
         <main className="main">
           <div className="main_container">
@@ -27,7 +52,7 @@ const Home = () => {
           </div>
         </main>
       </section>
-      <Footer/>
+      <Footer />
     </>
   );
 };

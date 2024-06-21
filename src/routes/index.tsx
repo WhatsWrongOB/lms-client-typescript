@@ -1,19 +1,17 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { User } from "../components/Navbar";
-
+import { useGetToken, useGetUser } from "../hooks";
 
 const ProtectedRoute = () => {
-  const token: string | null = localStorage.getItem("token");
+  const token: string | null = useGetToken();
 
   return token ? <Outlet /> : <Navigate to="/" />;
 };
 
-
 const AdminRoute = () => {
-  const storedUser: string | null = localStorage.getItem("CurrentUser");
-  const currentUser: User | null = storedUser ? JSON.parse(storedUser) : null;
+  const currentUser: User | null = useGetUser();
 
-  const token: string | null = localStorage.getItem("token");
+  const token: string | null = useGetToken();
 
   return currentUser?.isAdmin ? (
     <Outlet />

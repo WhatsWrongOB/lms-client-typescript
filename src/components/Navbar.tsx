@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Hamburger from "hamburger-react";
 import { toast } from "react-hot-toast";
 import axios from "axios";
+import { useGetUser } from "../hooks";
 
 export interface User {
   id: string;
@@ -28,17 +29,14 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("CurrentUser");
-    if (storedUser) setCurrentUser(JSON.parse(storedUser));
+    const storedUser = useGetUser();
+    if (storedUser) setCurrentUser(storedUser);
   }, []);
 
   const logout = async (): Promise<void> => {
     try {
       const { data } = await axios.get(
-        `${import.meta.env.VITE_SERVER}/api/logout`,
-        {
-          withCredentials: true,
-        }
+        `${import.meta.env.VITE_SERVER}/api/logout`
       );
 
       if (data?.success) {

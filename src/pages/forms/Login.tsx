@@ -7,6 +7,7 @@ import { toast } from "react-hot-toast";
 import { FcDepartment } from "react-icons/fc";
 import axios from "axios";
 import { ClipLoader } from "react-spinners";
+import { useSetToken, useSetUser } from "../../hooks";
 
 interface UserDetails {
   email: string;
@@ -42,106 +43,108 @@ const Login = () => {
     e.preventDefault();
     const { department, email, password } = formData;
 
-    if (!department) toast.error("Department Required");
-    else {
-      try {
-        setLoading(true);
+    if (!department) {
+      toast.error("Department Required");
+      return;
+    }
 
-        const { data } = await axios.post(
-          `${import.meta.env.VITE_SERVER}/api/login`,
-          { department, email, password },
-          {
-            withCredentials: true,
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        if (data?.success) {
-          localStorage.setItem("token", data.token);
-          localStorage.setItem("CurrentUser", JSON.stringify(data.user));
-          toast.success(data.message);
-          navigate("/home");
+    try {
+      setLoading(true);
+
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_SERVER}/api/login`,
+        { department, email, password },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
-      } catch (error: any) {
-        if (error.response) toast.error(error.response.data.message);
-        else if (error.request)
-          toast.error("Server not responding. Please try again later.");
-        else toast.error("An unexpected error occurred.");
-      } finally {
-        setLoading(false);
+      );
+
+      if (data?.success) {
+        useSetToken(data.token);
+        useSetUser(data.user);
+        toast.success(data.message);
+        navigate("/home");
       }
+    } catch (error: any) {
+      if (error.response) toast.error(error.response.data.message);
+      else if (error.request)
+        toast.error("Server not responding. Please try again later.");
+      else toast.error("An unexpected error occurred.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-   <main className="auth">
-     <div className="auth_container">
-      <div className="auth_upper">
-        <div>
-          <img src={user} alt="user" />
+    <main className="auth">
+      <div className="auth_container">
+        <div className="auth_upper">
+          <div>
+            <img src={user} alt="user" />
+          </div>
+          <h1>Student Login</h1>
         </div>
-        <h1>Student Login</h1>
+        <form className="auth_form" onSubmit={handleSubmit}>
+          <div className="group">
+            <FcDepartment color="black" />
+            <select
+              name="department"
+              value={formData.department}
+              onChange={handleChange}
+              required
+            >
+              <option>--- Select Depart ---</option>
+              <option value="bsse">BSSE</option>
+              <option value="bscs">BSCS</option>
+              <option value="bsit">BSIT</option>
+            </select>
+          </div>
+
+          <div className="group">
+            <FaUser size={15} />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="group">
+            <FaKey size={15} />
+            <input
+              type={active ? "text" : "password"}
+              name="password"
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+            <span className="eye" onClick={handleShowPass}>
+              {active ? <FaEyeSlash /> : <FaEye />}
+            </span>
+          </div>
+
+          <button type="submit">
+            {loading ? (
+              <ClipLoader color="white" loading={loading} size={10} />
+            ) : (
+              "Login"
+            )}
+          </button>
+        </form>
+        <p className="forget">
+          Forgot Password ? <Link to="/forget-password">click here</Link>
+        </p>
+        <p className="forget">
+          Don't have an account ? <Link to="/register">register here</Link>
+        </p>
       </div>
-      <form className="auth_form" onSubmit={handleSubmit}>
-        <div className="group">
-          <FcDepartment color="black" />
-          <select
-            name="department"
-            value={formData.department}
-            onChange={handleChange}
-            required
-          >
-            <option>--- Select Depart ---</option>
-            <option value="bsse">BSSE</option>
-            <option value="bscs">BSCS</option>
-            <option value="bsit">BSIT</option>
-          </select>
-        </div>
-
-        <div className="group">
-          <FaUser size={15} />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className="group">
-          <FaKey size={15} />
-          <input
-            type={active ? "text" : "password"}
-            name="password"
-            placeholder="Password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-          <span className="eye" onClick={handleShowPass}>
-            {active ? <FaEyeSlash /> : <FaEye />}
-          </span>
-        </div>
-
-        <button type="submit">
-          {loading ? (
-            <ClipLoader color="white" loading={loading} size={10} />
-          ) : (
-            "Login"
-          )}
-        </button>
-      </form>
-      <p className="forget">
-        Forgot Password ? <Link to="/forget-password">click here</Link>
-      </p>
-      <p className="forget">
-        Don't have an account ? <Link to="/register">register here</Link>
-      </p>
-    </div>
-   </main>
+    </main>
   );
 };
 
