@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { User } from "../pages/Home";
+import { User } from "../components/Navbar";
 
 
 const ProtectedRoute = () => {
