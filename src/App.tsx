@@ -7,6 +7,7 @@ import { ProtectedRoute } from "./routes";
 import Academics from "./pages/Academics";
 import Feedback from "./pages/Feedback";
 
+
 const App = () => {
   return (
     <Router>

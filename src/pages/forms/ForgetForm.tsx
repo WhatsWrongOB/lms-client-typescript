@@ -41,7 +41,8 @@ const ForgetForm = () => {
   };
 
   return (
-    <div className="auth_container">
+  <main className="auth">
+      <div className="auth_container">
       <div className="auth_upper auth_reg_upper">
         <h1>Forget Password</h1>
       </div>
@@ -70,6 +71,7 @@ const ForgetForm = () => {
         Not Found ? <Link to="/">Go Back</Link>
       </p>
     </div>
+  </main>
   );
 };
 

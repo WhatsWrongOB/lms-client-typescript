@@ -37,7 +37,8 @@ const VerifyForm = () => {
   };
 
   return (
-    <div className="auth_container">
+   <main className="auth">
+     <div className="auth_container">
       <div className="auth_upper auth_reg_upper">
         <h1>Email Verification</h1>
       </div>
@@ -52,6 +53,7 @@ const VerifyForm = () => {
       </form>
       <p className="forget">Click this button to verify your account</p>
     </div>
+   </main>
   );
 };
 

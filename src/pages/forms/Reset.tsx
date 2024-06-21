@@ -50,7 +50,8 @@ const Reset = () => {
   };
 
   return (
-    <div className="auth_container">
+   <main className="auth">
+     <div className="auth_container">
       <div className="auth_upper auth_reg_upper">
         <h1>Reset Password</h1>
       </div>
@@ -81,6 +82,7 @@ const Reset = () => {
         Not Found ? <Link to="/">Go Back</Link>
       </p>
     </div>
+   </main>
   );
 };
 

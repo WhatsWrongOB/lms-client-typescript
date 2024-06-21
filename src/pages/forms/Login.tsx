@@ -75,7 +75,8 @@ const Login = () => {
   };
 
   return (
-    <div className="auth_container">
+   <main className="auth">
+     <div className="auth_container">
       <div className="auth_upper">
         <div>
           <img src={user} alt="user" />
@@ -140,6 +141,7 @@ const Login = () => {
         Don't have an account ? <Link to="/register">register here</Link>
       </p>
     </div>
+   </main>
   );
 };
 

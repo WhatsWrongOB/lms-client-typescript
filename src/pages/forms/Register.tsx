@@ -73,7 +73,8 @@ const Register = () => {
   };
 
   return (
-    <div className="auth_container">
+   <main className="auth">
+     <div className="auth_container">
       <div className="auth_upper auth_reg_upper">
         <h1>Student Registration</h1>
       </div>
@@ -145,6 +146,7 @@ const Register = () => {
         Already have an account ? <Link to="/">login</Link>
       </p>
     </div>
+   </main>
   );
 };
 

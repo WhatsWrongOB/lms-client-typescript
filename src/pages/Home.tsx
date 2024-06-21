@@ -4,10 +4,8 @@ import Navbar from "../components/Navbar";
 const Home = () => {
   return (
     <>
-      <Navbar />
-
-      <section>
-
+    <Navbar/>
+      <section className="home_section">
         <main className="main">
           <div className="main_container">
             <div className="status">
@@ -28,11 +26,8 @@ const Home = () => {
             </div>
           </div>
         </main>
-
-
       </section>
-      <Footer />
-
+      <Footer/>
     </>
   );
 };
