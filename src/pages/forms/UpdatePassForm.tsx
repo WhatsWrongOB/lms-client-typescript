@@ -57,7 +57,10 @@ const UpdatePassForm = () => {
         );
         if (data?.success) toast.success(data.message);
       } catch (error: any) {
-        toast.error(error.response.data.message);
+        if (error.response) toast.error(error.response.data.message);
+        else if (error.request)
+          toast.error("Server not responding. Please try again later.");
+        else toast.error("An unexpected error occurred.");
       } finally {
         setLoading(false);
       }
