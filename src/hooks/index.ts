@@ -1,4 +1,4 @@
-import { User } from "../components/Navbar";
+import { User } from "../types";
 
 
 export const useGetToken = (): string | null => {
