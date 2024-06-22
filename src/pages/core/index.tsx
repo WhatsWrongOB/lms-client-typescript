@@ -14,7 +14,13 @@ const Timetable = lazy(() => import("./Timetable"));
 
 const CoreApp = () => {
   return (
-    <Suspense fallback={<div className="loader"></div>}>
+    <Suspense
+      fallback={
+        <div className="center">
+          <div className="loader"></div>
+        </div>
+      }
+    >
       <Navbar />
       <Routes>
         <Route element={<ProtectedRoute />}>

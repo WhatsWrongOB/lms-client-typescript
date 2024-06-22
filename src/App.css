@@ -26,8 +26,22 @@ body::-webkit-scrollbar {
 
 /* ____________________Loader__________________ */
 
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  font-size: 1.5rem;
+  font-family: Bruno ace;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}
+
 .loader {
-  width: 50px;
+  width: 45px;
   aspect-ratio: 1;
   display: grid;
   color: #854f1d;
@@ -285,6 +299,78 @@ body::-webkit-scrollbar {
   align-items: center;
 }
 
+/* ___________________Feedback___________________ */
+
+.feedback {
+  width: 100vw;
+  height: auto;
+  color: black;
+  background-color: #f1cfa4;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 0px;
+}
+
+.feedback_container {
+  width: 90%;
+}
+
+.footer_container form {
+  width: 100%;
+}
+
+.feedback_container form div h1 {
+  font-size: 1.1rem;
+}
+
+.feedback_container form div input {
+  display: inline-block;
+  width: 98%;
+  height: 65px;
+  padding: 10px 0px 10px 10px;
+  font-size: 1.01rem;
+  border: none;
+}
+
+.feedback_container div input:focus {
+  outline: 3px solid #a2c3f4;
+}
+
+.feedback_container form button {
+  width: 100%;
+  margin-top: 20px;
+  padding: 13px;
+  font-size: 1.05rem;
+  background-color: #854f1d;
+  color: white;
+  border: 1px solid #854f1d;
+}
+
+.star-rating {
+  display: flex;
+  gap: 10px;
+  direction: row;
+}
+
+.star {
+  font-size: 3.7rem;
+  cursor: pointer;
+  color: white;
+}
+
+.star.filled {
+  color: #d49100;
+}
+
+.stars {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -20px;
+}
+
 /* ___________________-Footer_________________ */
 
 footer {
@@ -467,9 +553,30 @@ footer {
   }
 
   .feedback_container form button {
-    width: 105%;
+    width: 100%;
   }
 
+  .star-rating {
+    margin-top: 10px;
+  }
+
+  .star {
+    font-size: 2.5rem;
+  }
+
+  .feedback_container form div input {
+    font-size: 0.9rem;
+    height: 55px;
+  }
+
+  .feedback_container form div h1 {
+    font-size: 0.95rem;
+    font-weight: 550;
+  }
+
+  .feedback_container form button {
+    font-size: 0.95rem;
+  }
 }
 
 .academics,
@@ -481,76 +588,4 @@ footer {
   width: 100vw;
   color: black;
   background-color: #f1cfa4;
-}
-
-.feedback {
-  width: 100vw;
-  height: auto;
-  color: black;
-  background-color: #f1cfa4;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 50px 0px;
-}
-
-.feedback_container {
-  width: 90%;
-}
-
-.footer_container form {
-  width: 100%;
-}
-
-.feedback_container form div h1 {
-  font-size: 1.2rem;
-  font-weight: 540;
-}
-
-.feedback_container form div input {
-  display: inline-block;
-  width: 98%;
-  height: 70px;
-  padding: 10px 0px 10px 10px;
-  font-size: 1.01rem;
-  border: none;
-}
-
-.feedback_container div input:focus {
-  outline: 3px solid #a2c3f4;
-}
-
-.feedback_container form button {
-  width: 100%;
-  margin-top: 20px;
-  padding: 13px;
-  font-size: 1.05rem;
-  background-color: #854f1d;
-  color: white;
-  border: 1px solid #854f1d;
-}
-
-.star-rating {
-  display: flex;
-  gap: 15px;
-  direction: row;
-}
-
-.star {
-  font-size: 3.7rem;
-  cursor: pointer;
-  color: white;
- 
-}
-
-.star.filled {
-  color: #d49100;
-}
-
-.stars {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: -20px;
 }
