@@ -14,7 +14,7 @@ const UpdatePassForm = lazy(() => import("./UpdatePassForm"));
 
 const FormApp = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<div className="center loader"></div>}>
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />

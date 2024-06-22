@@ -1,32 +1,9 @@
-import { useEffect } from "react";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import axios from "axios";
-import { useGetToken } from "../hooks";
-import { toast } from "react-hot-toast";
+
+import { Link } from "react-router-dom";
 
 const Home = () => {
-  const token = useGetToken();
-
-  useEffect(() => {
-    const getUsers = async (): Promise<void> => {
-      try {
-        const { data } = await axios.get(
-          `${import.meta.env.VITE_SERVER}/api/users`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        console.log(data);
-      } catch (error: any) {
-        toast.error(error.response.data.message);
-      }
-    };
-    getUsers();
-  }, []);
-
   return (
     <>
       <Navbar />
@@ -38,7 +15,9 @@ const Home = () => {
                 <li>Apl Status</li>
                 <li>Attendance OV</li>
                 <li>Assignments</li>
-                <li>Complains</li>
+                <Link to="/lms/complain">
+                  <li>Complains</li>
+                </Link>
                 <li>WA Group Links</li>
                 <li>Shared Sheets</li>
               </ul>

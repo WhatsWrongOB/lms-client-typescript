@@ -6,24 +6,70 @@
 
 a {
   text-decoration: none;
+  color: white;
 }
-
 
 body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  width: 100%;
+  width: 100vw;
   height: auto;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
   overflow-x: hidden;
 }
-
 
 body::-webkit-scrollbar {
   display: none;
 }
 
+/* HTML: <div class="loader"></div> */
 
+/* ____________________Loader__________________ */
+
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  display: grid;
+  color: #854f1d;
+  background: radial-gradient(
+    farthest-side,
+    currentColor calc(100% - 6px),
+    #0000 calc(100% - 5px) 0
+  );
+  -webkit-mask: radial-gradient(
+    farthest-side,
+    #0000 calc(100% - 13px),
+    #000 calc(100% - 12px)
+  );
+  border-radius: 50%;
+  animation: l19 2s infinite linear;
+}
+.loader::before,
+.loader::after {
+  content: "";
+  grid-area: 1/1;
+  background: linear-gradient(currentColor 0 0) center,
+    linear-gradient(currentColor 0 0) center;
+  background-size: 100% 10px, 10px 100%;
+  background-repeat: no-repeat;
+}
+.loader::after {
+  transform: rotate(45deg);
+}
+
+@keyframes l19 {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+.center {
+  width: 100%;
+  height: 97vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 /* _________________-Navbar___________________ */
 
@@ -79,7 +125,7 @@ body::-webkit-scrollbar {
 
 .dropdown_menu ul {
   display: flex;
-  padding: 0;
+  padding: 5px 0px;
   flex-direction: column;
   width: 130px;
   align-items: start;
@@ -92,7 +138,7 @@ body::-webkit-scrollbar {
   transition: all ease-in-out 0.1s;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .dropdown_menu li:hover {
@@ -136,10 +182,6 @@ body::-webkit-scrollbar {
   gap: 25px;
 }
 
-.nav_bar ul a {
-  color: white;
-}
-
 .nav_bar ul li {
   cursor: pointer;
   transition: all ease-in-out 0.1s;
@@ -171,7 +213,7 @@ body::-webkit-scrollbar {
 }
 
 .status {
-  margin-top: 15px;
+  padding: 0px;
   border-bottom: 1px solid #cec3b6;
 }
 
@@ -198,11 +240,57 @@ body::-webkit-scrollbar {
   display: none;
 }
 
+/* ________________--Update Password__________________ */
+
+.lms_auth {
+  background-color: #f1cfa4;
+  height: auto;
+  padding: 80px 0px 50px 0px;
+}
+
+.lms_auth_container {
+  width: 100%;
+  background-color: transparent;
+}
+
+.lms_form .group {
+  border-radius: 0px;
+  background-color: #faebd7;
+}
+
+.lms_form .group input {
+  background-color: #faebd7;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 1.01rem;
+}
+
+.lms_form button {
+  width: 83%;
+  border-radius: 0px;
+  font-size: 1.1rem;
+}
+
+.lms_form button {
+  background-color: #a96a3f;
+}
+
+.navigation {
+  width: 100%;
+  background-color: #70542f;
+  color: white;
+  font-size: 1.15rem;
+  height: 50px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:serif;
+  font-weight: 550;
+}
 
 /* ___________________-Footer_________________ */
 
 footer {
-  height: auto;
+  min-height: auto;
   color: white;
   background-color: #70542f;
 }
@@ -210,17 +298,14 @@ footer {
 .footer_container {
   display: flex;
   justify-content: space-around;
-  margin-bottom: 20px;
-}
-
-.footer_logo h1 {
-  margin: 0;
-  font-size: 2rem;
-  font-family: bruno ace;
+  align-items: center;
+  border-top: 2px solid #cec8c2;
+  border-bottom: 2px solid #cbc3bb;
+  padding: 20px 0px;
 }
 
 .line h3 {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   margin-bottom: 20px;
 }
 
@@ -244,7 +329,7 @@ footer {
 }
 
 .end {
-  padding: 20px 0px;
+  padding: 15px 0px;
   text-align: center;
 }
 
@@ -314,23 +399,19 @@ footer {
     flex-direction: column;
   }
 
-  footer .logo {
-    margin: 0%;
+  .footer_log {
+    padding: 0px 100px 20px 0px;
   }
 
   .footer_container {
     justify-content: start;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 30px;
     padding-left: 25px;
   }
 
-  .footer_logo {
-    margin: 0px 0px 25px 20px;
-  }
-
   .line {
-    padding-right: 55px;
+    padding-right: 50px;
   }
 
   .line h3 {
@@ -340,13 +421,12 @@ footer {
   .line ul li {
     font-size: 0.9rem;
   }
-
 }
 
 @media screen and (max-width: 568px) {
   .flex {
     gap: 18px;
-    padding-right: 40px;
+    padding: 0px 15px;
   }
 
   .flex li {
@@ -358,6 +438,7 @@ footer {
   }
 
   .pre_nav ul {
+    padding-left: 10px;
     gap: 10px;
   }
 
@@ -367,16 +448,18 @@ footer {
   }
 
   .pre_nav ul li {
-    font-size: 0.8rem;
+    font-size: 0.79rem;
   }
 }
 
-
-
 .academics,
-.feedback {
-  height: 36vh;
+.feedback,
+.complain,
+.timetable,
+.dashboard,
+.profile_page {
+  height: 50vh;
   width: 100vw;
   color: white;
-  background-color: #70542f;
+  background-color: #f1cfa4;
 }

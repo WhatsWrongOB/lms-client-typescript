@@ -1,12 +1,13 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import Navigation from "../components/Navigation";
 
 const Feedback = () => {
   return (
     <>
-      <main className="feedback">
-        <Navbar />
-      </main>
+      <Navbar />
+      <Navigation title="Feedback" />
+      <main className="feedback"></main>
       <Footer />
     </>
   );

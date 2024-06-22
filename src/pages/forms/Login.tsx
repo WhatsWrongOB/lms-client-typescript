@@ -65,7 +65,7 @@ const Login = () => {
         useSetToken(data.token);
         useSetUser(data.user);
         toast.success(data.message);
-        navigate("/home");
+        navigate("/lms");
       }
     } catch (error: any) {
       if (error.response) toast.error(error.response.data.message);

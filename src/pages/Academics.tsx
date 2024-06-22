@@ -1,12 +1,13 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import Navigation from "../components/Navigation";
 
 const Academics = () => {
   return (
     <>
-      <main className="academics">
-        <Navbar />
-      </main>
+      <Navbar />
+      <Navigation title="Academics" />
+      <main className="academics"></main>
       <Footer />
     </>
   );

@@ -74,7 +74,7 @@ const Navbar = () => {
             }
           >
             <ul>
-              <Link to={"/profile"}>
+              <Link to={"/lms/profile"}>
                 <li>
                   <i
                     className="fa fa-user fa-sm fa-fw me-2 text-gray-400"
@@ -113,24 +113,28 @@ const Navbar = () => {
       <nav className="nav_bar">
         <div className="logo">
           <img src="https://lms.giccl.edu.pk/img/logo.png" alt="giccl" />
-          <div className="logo_text">
+          <Link to={"/lms"} className="logo_text">
             <h3>GIGCCL</h3>
             <p>Student Portal</p>
-          </div>
+          </Link>
         </div>
 
         <ul className={toggleMenu ? "menu_active" : ""}>
-          <Link to={"/home"}>
+          <Link to={"/lms"}>
             <li>Home</li>
           </Link>
-          {currentUser?.isAdmin ? <li>Dashboard</li> : null}
-          <Link to="/academics">
+          {currentUser?.isAdmin ? (
+            <Link to={"/lms/dashboard"}>
+              <li>Dashboard</li>
+            </Link>
+          ) : null}
+          <Link to="/lms/academics">
             <li>Academics</li>
           </Link>
-          <Link to={"/"}>
-            <li>Learning</li>
+          <Link to={"/lms/timetable"}>
+            <li>Timetable</li>
           </Link>
-          <Link to={"/feedback"}>
+          <Link to={"/lms/feedback"}>
             <li>Feedback</li>
           </Link>
         </ul>

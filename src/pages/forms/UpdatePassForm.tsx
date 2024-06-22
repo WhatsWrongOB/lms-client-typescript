@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import axios from "axios";
 import { useGetToken, useGetUserId } from "../../hooks";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import Navigation from "../../components/Navigation";
 
 interface UserDetails {
   curPass: string;
@@ -80,61 +83,63 @@ const UpdatePassForm = () => {
   };
 
   return (
-    <main className="auth">
-      <div className="auth_container">
-        <div className="auth_upper auth_reg_upper">
-          <h1>Change Password</h1>
+    <>
+      <Navbar />
+      <Navigation title="Update Password" />
+      <main className="auth lms_auth">
+        <div className="auth_container lms_auth_container">
+          <form className="auth_form lms_form" onSubmit={handleSubmit}>
+            <div className="group">
+              <FaKey size={15} color="gray" />
+              <input
+                type="password"
+                name="curPass"
+                placeholder="Current Password"
+                value={formData.curPass}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className="group">
+              <FaKey size={15} color="gray" />
+              <input
+                type="password"
+                name="newPass"
+                placeholder="New Password"
+                value={formData.newPass}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className="group">
+              <FaKey size={15} color="gray" />
+              <input
+                type="password"
+                name="confirmPass"
+                placeholder="Re-Type Password"
+                value={formData.confirmPass}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <button type="submit">
+              {loading ? (
+                <ClipLoader color="white" loading={loading} size={10} />
+              ) : (
+                "Change"
+              )}
+            </button>
+          </form>
+          <p className="forget">
+            Not need back to home ? <Link to="/lms">home</Link>
+          </p>
         </div>
-        <form className="auth_form" onSubmit={handleSubmit}>
-          <div className="group">
-            <FaKey size={15} />
-            <input
-              type="password"
-              name="curPass"
-              placeholder="Current Password"
-              value={formData.curPass}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div className="group">
-            <FaKey size={15} />
-            <input
-              type="password"
-              name="newPass"
-              placeholder="New Password"
-              value={formData.newPass}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div className="group">
-            <FaKey size={15} />
-            <input
-              type="password"
-              name="confirmPass"
-              placeholder="Re-Type Password"
-              value={formData.confirmPass}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <button type="submit">
-            {loading ? (
-              <ClipLoader color="white" loading={loading} size={10} />
-            ) : (
-              "Change"
-            )}
-          </button>
-        </form>
-        <p className="forget">
-          Already have an account? <Link to="/">login</Link>
-        </p>
-      </div>
-    </main>
+      </main>
+      <Footer />
+    </>
   );
 };
 
