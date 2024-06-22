@@ -4,15 +4,7 @@ import Hamburger from "hamburger-react";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 import { useGetUser } from "../hooks";
-
-export interface User {
-  id: string;
-  email: string;
-  username: string;
-  department: string;
-  isAdmin: boolean;
-  profilePicture: string;
-}
+import { User } from "../types";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -32,6 +24,29 @@ const Navbar = () => {
     const storedUser = useGetUser();
     if (storedUser) setCurrentUser(storedUser);
   }, []);
+
+  useEffect(() => {
+    const closeMenuOnOutsideClick = (event: MouseEvent) => {
+      if (toggleMenu) {
+        const target = event.target as HTMLElement;
+        if (!target.closest(".nav_bar")) {
+          setToggleMenu(false);
+        }
+      }
+      if (toggleDropDown) {
+        const target = event.target as HTMLElement;
+        if (!target.closest(".profile") && !target.closest(".dropdown_menu")) {
+          setToggleDropDown(false);
+        }
+      }
+    };
+
+    document.body.addEventListener("click", closeMenuOnOutsideClick);
+
+    return () => {
+      document.body.removeEventListener("click", closeMenuOnOutsideClick);
+    };
+  }, [toggleMenu]);
 
   const logout = async (): Promise<void> => {
     try {
@@ -121,25 +136,29 @@ const Navbar = () => {
 
         <ul className={toggleMenu ? "menu_active" : ""}>
           <Link to={"/lms"}>
-            <li>Home</li>
+            <li onClick={() => setToggleMenu(false)}>Home</li>
           </Link>
+
           {currentUser?.isAdmin ? (
             <Link to={"/lms/dashboard"}>
-              <li>Dashboard</li>
+              <li onClick={() => setToggleMenu(false)}>Dashboard</li>
             </Link>
           ) : null}
+
           <Link to="/lms/academics">
-            <li>Academics</li>
+            <li onClick={() => setToggleMenu(false)}>Academics</li>
           </Link>
+
           <Link to={"/lms/timetable"}>
-            <li>Timetable</li>
+            <li onClick={() => setToggleMenu(false)}>Timetable</li>
           </Link>
+
           <Link to={"/lms/feedback"}>
-            <li>Feedback</li>
+            <li onClick={() => setToggleMenu(false)}>Feedback</li>
           </Link>
         </ul>
         <div className="hamburger" onClick={handleMenuToggle}>
-          <Hamburger color="white" size={16} />
+          <Hamburger color="white" size={16} toggled={toggleMenu} />
         </div>
       </nav>
     </nav>
