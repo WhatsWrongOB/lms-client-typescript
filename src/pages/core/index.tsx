@@ -19,7 +19,7 @@ const CoreApp = () => {
 
       <Suspense
         fallback={
-          <div className="center">
+          <div className="core_center">
             <div className="loader"></div>
           </div>
         }

@@ -85,6 +85,15 @@ body::-webkit-scrollbar {
   align-items: center;
 }
 
+.core_center {
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f1cfa4;
+}
+
 /* _________________-Navbar___________________ */
 
 .pre_nav {
@@ -443,8 +452,7 @@ footer {
     position: absolute;
     flex-direction: column;
     width: 100%;
-    background-color: white;
-    color: black;
+    background-color: #70542f;
     top: 45px;
     padding: 20px 0px;
     display: none;
@@ -455,7 +463,7 @@ footer {
   }
 
   .nav_bar ul a {
-    color: black;
+    color: white;
   }
 
   .hamburger {
