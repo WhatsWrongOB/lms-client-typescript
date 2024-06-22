@@ -280,9 +280,9 @@ body::-webkit-scrollbar {
   color: white;
   font-size: 1.1rem;
   height: 50px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* ___________________-Footer_________________ */
@@ -449,32 +449,108 @@ footer {
     font-size: 0.79rem;
   }
 
-  .dropdown_menu ul{
+  .dropdown_menu ul {
     gap: 15px;
   }
 
-  .navigation{
+  .navigation {
     font-size: 1rem;
   }
 
-  .lms_form .group input{
+  .lms_form .group input {
     font-size: 0.9rem;
   }
 
-  .lms_form button{
+  .lms_form button {
     font-size: 1rem;
     width: 86%;
   }
+
+  .feedback_container form button {
+    width: 105%;
+  }
+
 }
 
 .academics,
-.feedback,
 .complain,
 .timetable,
 .dashboard,
 .profile_page {
   height: 50vh;
   width: 100vw;
-  color: white;
+  color: black;
   background-color: #f1cfa4;
+}
+
+.feedback {
+  width: 100vw;
+  height: auto;
+  color: black;
+  background-color: #f1cfa4;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 0px;
+}
+
+.feedback_container {
+  width: 90%;
+}
+
+.footer_container form {
+  width: 100%;
+}
+
+.feedback_container form div h1 {
+  font-size: 1.2rem;
+  font-weight: 540;
+}
+
+.feedback_container form div input {
+  display: inline-block;
+  width: 98%;
+  height: 70px;
+  padding: 10px 0px 10px 10px;
+  font-size: 1.01rem;
+  border: none;
+}
+
+.feedback_container div input:focus {
+  outline: 3px solid #a2c3f4;
+}
+
+.feedback_container form button {
+  width: 100%;
+  margin-top: 20px;
+  padding: 13px;
+  font-size: 1.05rem;
+  background-color: #854f1d;
+  color: white;
+  border: 1px solid #854f1d;
+}
+
+.star-rating {
+  display: flex;
+  gap: 15px;
+  direction: row;
+}
+
+.star {
+  font-size: 3.7rem;
+  cursor: pointer;
+  color: white;
+ 
+}
+
+.star.filled {
+  color: #d49100;
+}
+
+.stars {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -20px;
 }

@@ -13,7 +13,6 @@ export const useSetToken = (token: string): void => {
 
 export const useSetUser = (user: User): void => {
     localStorage.setItem("CurrentUser", JSON.stringify(user));
-
 }
 
 export const useGetUserId = (): string | null => {
