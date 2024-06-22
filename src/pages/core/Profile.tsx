@@ -1,6 +1,6 @@
-import { User } from "../../components/Navbar";
 import Navigation from "../../components/Navigation";
 import { useGetUser } from "../../hooks";
+import { User } from "../../types";
 
 
 const Profile = () => {
