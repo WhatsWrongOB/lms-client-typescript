@@ -278,13 +278,11 @@ body::-webkit-scrollbar {
   width: 100%;
   background-color: #70542f;
   color: white;
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   height: 50px;
   display:flex;
   justify-content:center;
   align-items:center;
-  font-family:serif;
-  font-weight: 550;
 }
 
 /* ___________________-Footer_________________ */
@@ -449,6 +447,14 @@ footer {
 
   .pre_nav ul li {
     font-size: 0.79rem;
+  }
+
+  .dropdown_menu ul{
+    gap: 15px;
+  }
+
+  .navigation{
+    font-size: 1rem;
   }
 }
 

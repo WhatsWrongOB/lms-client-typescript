@@ -1,7 +1,7 @@
-import Footer from "../components/Footer";
-import Navbar, { User } from "../components/Navbar";
-import Navigation from "../components/Navigation";
-import { useGetUser } from "../hooks";
+import { User } from "../../components/Navbar";
+import Navigation from "../../components/Navigation";
+import { useGetUser } from "../../hooks";
+
 
 const Profile = () => {
   const user: User | null = useGetUser();
@@ -10,10 +10,8 @@ const Profile = () => {
 
   return (
     <>
-      <Navbar />
       <Navigation title={`${name}"s  Profile`} />
       <main className="profile_page"></main>
-      <Footer />
     </>
   );
 };

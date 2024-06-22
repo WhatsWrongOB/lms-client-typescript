@@ -1,6 +1,8 @@
 import { Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
-import { AdminRoute, ProtectedRoute } from "../routes";
+import { AdminRoute, ProtectedRoute } from "../../routes";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 
 const Home = lazy(() => import("./Home"));
 const Academics = lazy(() => import("./Academics"));
@@ -13,6 +15,7 @@ const Timetable = lazy(() => import("./Timetable"));
 const CoreApp = () => {
   return (
     <Suspense fallback={<div className="loader"></div>}>
+      <Navbar />
       <Routes>
         <Route element={<ProtectedRoute />}>
           <Route path="/" element={<Home />} />
@@ -26,6 +29,7 @@ const CoreApp = () => {
           <Route path="/dashboard" element={<Dashboard />} />
         </Route>
       </Routes>
+      <Footer />
     </Suspense>
   );
 };

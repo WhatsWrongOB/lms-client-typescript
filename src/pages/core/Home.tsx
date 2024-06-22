@@ -1,12 +1,8 @@
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
-
 import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
     <>
-      <Navbar />
       <section className="home_section">
         <main className="main">
           <div className="main_container">
@@ -31,7 +27,6 @@ const Home = () => {
           </div>
         </main>
       </section>
-      <Footer />
     </>
   );
 };

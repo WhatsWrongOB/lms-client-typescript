@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 
-import FormApp from "./pages/forms";
-import CoreApp from "./pages";
+import FormApp from "./pages/auth";
+import CoreApp from "./pages/core";
 
 const App = () => {
   return (
