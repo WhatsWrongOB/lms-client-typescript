@@ -5,8 +5,6 @@ import { Link } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import axios from "axios";
 import { useGetToken, useGetUserId } from "../../hooks";
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
 import Navigation from "../../components/Navigation";
 
 interface UserDetails {
