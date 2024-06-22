@@ -11,6 +11,7 @@ const Complain = lazy(() => import("./Complain"));
 const Dashboard = lazy(() => import("./Dashboard"));
 const Profile = lazy(() => import("./Profile"));
 const Timetable = lazy(() => import("./Timetable"));
+const UpdatePassForm = lazy(() => import("../auth/UpdatePassForm"));
 
 const CoreApp = () => {
   return (
@@ -32,6 +33,7 @@ const CoreApp = () => {
             <Route path="/feedback" element={<Feedback />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/timetable" element={<Timetable />} />
+            <Route path="/update-password" element={<UpdatePassForm />} />
           </Route>
           <Route element={<AdminRoute />}>
             <Route path="/dashboard" element={<Dashboard />} />

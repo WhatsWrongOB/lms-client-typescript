@@ -22,6 +22,10 @@ body::-webkit-scrollbar {
   display: none;
 }
 
+button{
+  cursor: pointer;
+}
+
 /* HTML: <div class="loader"></div> */
 
 /* ____________________Loader__________________ */
@@ -339,7 +343,8 @@ body::-webkit-scrollbar {
   border: none;
 }
 
-.feedback_container div input:focus {
+.feedback_container div input:focus,
+.feedback_container div select:focus {
   outline: 3px solid #a2c3f4;
 }
 
@@ -374,6 +379,28 @@ body::-webkit-scrollbar {
   justify-content: center;
   align-items: center;
   margin-top: -20px;
+}
+
+.complain_topic {
+  margin-bottom: 20px;
+}
+
+.complain_topic input {
+  height: 30px !important;
+}
+
+.feedback_container form div select {
+  display: inline-block;
+  width: 99%;
+  padding: 10px 0px;
+  text-align: center;
+  font-size: 1.05rem;
+  border: none;
+}
+
+#file input{
+   height: auto;
+   width: auto ;
 }
 
 /* ___________________-Footer_________________ */
@@ -457,13 +484,12 @@ footer {
     transform: translateY(-10px);
     transition: opacity 0.3s ease, transform 0.3s ease;
   }
-  
+
   .nav_bar ul.menu_active {
     display: flex;
     opacity: 1;
     transform: translateY(0);
   }
-  
 
   @keyframes fadeIn {
     from {
@@ -475,7 +501,7 @@ footer {
       transform: translateY(0);
     }
   }
-  
+
   .nav_bar ul.menu_active {
     animation: fadeIn 0.3s ease forwards;
   }

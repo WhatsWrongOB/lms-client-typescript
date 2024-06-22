@@ -100,7 +100,7 @@ const Navbar = () => {
                   Profile
                 </li>
               </Link>
-              <Link to="/update-password">
+              <Link to="/lms/update-password">
                 <li>
                   <i
                     className="fa fa-cogs fa-sm fa-fw me-2 text-gray-400"

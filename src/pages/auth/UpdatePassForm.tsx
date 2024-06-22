@@ -84,7 +84,6 @@ const UpdatePassForm = () => {
 
   return (
     <>
-      <Navbar />
       <Navigation title="Update Password" />
       <main className="auth lms_auth">
         <div className="auth_container lms_auth_container">
@@ -138,7 +137,6 @@ const UpdatePassForm = () => {
           </p>
         </div>
       </main>
-      <Footer />
     </>
   );
 };
