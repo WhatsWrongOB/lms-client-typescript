@@ -1,6 +1,5 @@
 import { Suspense } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Toaster } from "react-hot-toast";
+import { Routes, Route } from "react-router-dom";
 import {
   Forget,
   ForgetForm,

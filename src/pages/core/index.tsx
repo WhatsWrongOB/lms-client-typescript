@@ -14,29 +14,32 @@ const Timetable = lazy(() => import("./Timetable"));
 
 const CoreApp = () => {
   return (
-    <Suspense
-      fallback={
-        <div className="center">
-          <div className="loader"></div>
-        </div>
-      }
-    >
+    <>
       <Navbar />
-      <Routes>
-        <Route element={<ProtectedRoute />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/academics" element={<Academics />} />
-          <Route path="/complain" element={<Complain />} />
-          <Route path="/feedback" element={<Feedback />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/timetable" element={<Timetable />} />
-        </Route>
-        <Route element={<AdminRoute />}>
-          <Route path="/dashboard" element={<Dashboard />} />
-        </Route>
-      </Routes>
+
+      <Suspense
+        fallback={
+          <div className="center">
+            <div className="loader"></div>
+          </div>
+        }
+      >
+        <Routes>
+          <Route element={<ProtectedRoute />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/academics" element={<Academics />} />
+            <Route path="/complain" element={<Complain />} />
+            <Route path="/feedback" element={<Feedback />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/timetable" element={<Timetable />} />
+          </Route>
+          <Route element={<AdminRoute />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Route>
+        </Routes>
+      </Suspense>
       <Footer />
-    </Suspense>
+    </>
   );
 };
 
