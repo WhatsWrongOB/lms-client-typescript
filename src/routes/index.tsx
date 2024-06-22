@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { User } from "../components/Navbar";
 import { useGetToken, useGetUser } from "../hooks";
+import { User } from "../types";
 
 const ProtectedRoute = () => {
   const token: string | null = useGetToken();
