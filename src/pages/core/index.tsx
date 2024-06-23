@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { AdminRoute, ProtectedRoute } from "../../routes";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import UpdateProfile from "./UpdateProfilePage";
 
 const Home = lazy(() => import("./Home"));
 const Academics = lazy(() => import("./Academics"));
@@ -34,6 +35,7 @@ const CoreApp = () => {
             <Route path="/profile" element={<Profile />} />
             <Route path="/timetable" element={<Timetable />} />
             <Route path="/update-password" element={<UpdatePassForm />} />
+            <Route path="/update-profile/:name" element={<UpdateProfile />} />
           </Route>
           <Route element={<AdminRoute />}>
             <Route path="/dashboard" element={<Dashboard />} />
