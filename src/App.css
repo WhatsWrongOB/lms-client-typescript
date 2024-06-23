@@ -140,8 +140,7 @@ button {
   flex-direction: column;
   align-items: start;
   transition: opacity 0.3s ease, transform 0.3s ease;
-  opacity: 0;
-  transform: translateY(-10px);
+  display: none;
   position: absolute;
   right: 50px;
   background-color: white;
@@ -150,8 +149,7 @@ button {
 }
 
 .dropdown_menu.active ul {
-  opacity: 1;
-  transform: translateY(0);
+  display: flex;
 }
 
 .dropdown_menu ul li {
@@ -224,7 +222,7 @@ button {
 
 .main {
   width: 100%;
-  height: 60vh;
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -261,6 +259,21 @@ button {
 
 .hamburger {
   display: none;
+}
+
+.greetings {
+  text-align: center;
+  padding: 100px 0px;
+}
+
+.greetings h1 {
+  font-size: 2rem;
+  font-family: Bruno Ace;
+  margin: 0;
+}
+
+.greetings p {
+  font-size: 1rem;
 }
 
 /* ________________--Update Password__________________ */
@@ -456,13 +469,13 @@ button {
 }
 
 .card h3 {
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 400;
   margin: 0;
 }
 
 .card p {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 400;
   margin-bottom: 30px;
 }
@@ -799,6 +812,14 @@ footer {
 
   .feedback_container form button {
     font-size: 0.95rem;
+  }
+
+  .greetings h1 {
+    font-size: 1.6rem;
+  }
+
+  .greetings p {
+    font-size: 0.9rem;
   }
 }
 

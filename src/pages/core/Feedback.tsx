@@ -4,7 +4,7 @@ import StarRating from "../../components/Star";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 import { ClipLoader } from "react-spinners";
-import { useGetToken } from "../../hooks";
+import { useGetToken, useHandleAxiosError } from "../../hooks";
 
 const Feedback = () => {
   const token = useGetToken();
@@ -46,10 +46,8 @@ const Feedback = () => {
         setSuggestion("");
       }
     } catch (error: any) {
-      if (error.response) toast.error(error.response.data.message);
-      else if (error.request)
-        toast.error("Server not responding. Please try again later.");
-      else toast.error("An unexpected error occurred.");
+      useHandleAxiosError(error);
+
     } finally {
       setLoading(false);
     }

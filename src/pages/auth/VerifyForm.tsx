@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 import { ClipLoader } from "react-spinners";
+import { useHandleAxiosError } from "../../hooks";
 
 const VerifyForm = () => {
   const searchParams = new URLSearchParams(useLocation().search);
@@ -27,10 +28,7 @@ const VerifyForm = () => {
         navigate("/");
       }
     } catch (error: any) {
-      if (error.response) toast.error(error.response.data.message);
-      else if (error.request)
-        toast.error("Server not responding. Please try again later.");
-      else toast.error("An unexpected error occurred.");
+      useHandleAxiosError(error);
     } finally {
       setLoading(false);
     }

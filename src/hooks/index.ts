@@ -1,3 +1,4 @@
+import { toast } from "react-hot-toast";
 import { User } from "../types";
 
 
@@ -15,14 +16,20 @@ export const useSetUser = (user: User): void => {
     localStorage.setItem("CurrentUser", JSON.stringify(user));
 }
 
-export const useGetUserId = (): string | null => {
-    const user: string | null = localStorage.getItem("CurrentUser");
-    if (!user) return null;
-    return JSON.parse(user).id
-}
-
 export const useGetUser = (): User | null => {
     const user: string | null = localStorage.getItem("CurrentUser");
     if (!user) return null;
     return JSON.parse(user)
 }
+
+export const useHandleAxiosError = (error: any) => {
+
+    if (error.response) {
+        toast.error(error.response.data.message);
+    } else if (error.request) {
+        toast.error("Server not responding. Please try again later.");
+    } else {
+        toast.error("An unexpected error occurred.");
+    }
+
+};

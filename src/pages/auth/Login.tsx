@@ -7,7 +7,7 @@ import { toast } from "react-hot-toast";
 import { FcDepartment } from "react-icons/fc";
 import axios from "axios";
 import { ClipLoader } from "react-spinners";
-import { useSetToken, useSetUser } from "../../hooks";
+import { useHandleAxiosError, useSetToken, useSetUser } from "../../hooks";
 
 interface UserDetails {
   email: string;
@@ -68,10 +68,7 @@ const Login = () => {
         navigate("/lms");
       }
     } catch (error: any) {
-      if (error.response) toast.error(error.response.data.message);
-      else if (error.request)
-        toast.error("Server not responding. Please try again later.");
-      else toast.error("An unexpected error occurred.");
+      useHandleAxiosError(error);
     } finally {
       setLoading(false);
     }

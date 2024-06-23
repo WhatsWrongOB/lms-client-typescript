@@ -4,7 +4,7 @@ import { FaKey } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import axios from "axios";
-import { useGetToken, useGetUserId } from "../../hooks";
+import { useGetToken, useGetUser, useHandleAxiosError } from "../../hooks";
 import Navigation from "../../components/Navigation";
 
 interface UserDetails {
@@ -15,7 +15,7 @@ interface UserDetails {
 
 const UpdatePassForm = () => {
   const token = useGetToken();
-  const id = useGetUserId();
+  const user = useGetUser();
   const [loading, setLoading] = useState<boolean>(false);
   const [formData, setFormData] = useState<UserDetails>({
     curPass: "",
@@ -40,6 +40,8 @@ const UpdatePassForm = () => {
 
     const { curPass, newPass, confirmPass } = formData;
 
+    const id = user?.id;
+
     if (newPass !== confirmPass) {
       toast.error("New password does not match with confirm password.");
       return;
@@ -50,8 +52,13 @@ const UpdatePassForm = () => {
       return;
     }
 
+    if (!id) {
+      toast.error("Id no given in update password");
+    }
+
     try {
       setLoading(true);
+
       const { data } = await axios.post(
         `${import.meta.env.VITE_SERVER}/api/update-password/${id}`,
         { curPass, newPass },
@@ -68,13 +75,8 @@ const UpdatePassForm = () => {
         setFormData({ curPass: "", newPass: "", confirmPass: "" });
       }
     } catch (error: any) {
-      if (error.response) {
-        toast.error(error.response.data.message);
-      } else if (error.request) {
-        toast.error("Server not responding. Please try again later.");
-      } else {
-        toast.error("An unexpected error occurred.");
-      }
+      useHandleAxiosError(error);
+
     } finally {
       setLoading(false);
     }

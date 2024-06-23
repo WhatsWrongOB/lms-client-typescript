@@ -5,6 +5,7 @@ import { toast } from "react-hot-toast";
 import { FaKey } from "react-icons/fa";
 import axios from "axios";
 import { ClipLoader } from "react-spinners";
+import { useHandleAxiosError } from "../../hooks";
 
 const Reset = () => {
   const searchParams = new URLSearchParams(useLocation().search);
@@ -40,10 +41,7 @@ const Reset = () => {
         navigate("/");
       }
     } catch (error: any) {
-      if (error.response) toast.error(error.response.data.message);
-      else if (error.request)
-        toast.error("Server not responding. Please try again later.");
-      else toast.error("An unexpected error occurred.");
+      useHandleAxiosError(error);
     } finally {
       setLoading(false);
     }

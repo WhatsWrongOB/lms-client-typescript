@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { useGetUser } from "../../hooks";
 
 const Home = () => {
+  const user = useGetUser();
+
   return (
     <>
       <section className="home_section">
@@ -23,6 +26,10 @@ const Home = () => {
                 src="https://lms.giccl.edu.pk/img/CodeX%20Logo%20copy%20l.png"
                 alt="codex"
               />
+            </div>
+            <div className="greetings">
+              <h1>Welcome, {user?.username}</h1>
+              <p>To {user?.department.toUpperCase()} Student Portal</p>
             </div>
           </div>
         </main>

@@ -6,6 +6,7 @@ import { FcDepartment } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import axios from "axios";
+import { useHandleAxiosError } from "../../hooks";
 
 interface UserDetails {
   username: string;
@@ -63,10 +64,8 @@ const Register = () => {
         navigate("/verify");
       }
     } catch (error: any) {
-      if (error.response) toast.error(error.response.data.message);
-      else if (error.request)
-        toast.error("Server not responding. Please try again later.");
-      else toast.error("An unexpected error occurred.");
+      useHandleAxiosError(error);
+
     } finally {
       setLoading(false);
     }

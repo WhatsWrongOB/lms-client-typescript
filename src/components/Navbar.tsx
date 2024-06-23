@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Hamburger from "hamburger-react";
 import { toast } from "react-hot-toast";
 import axios from "axios";
-import { useGetUser } from "../hooks";
+import { useGetUser, useHandleAxiosError } from "../hooks";
 import { User } from "../types";
 
 const Navbar = () => {
@@ -61,7 +61,7 @@ const Navbar = () => {
         navigate("/");
       }
     } catch (error: any) {
-      toast.error(error.response.data.message);
+      useHandleAxiosError(error);
     }
   };
 
