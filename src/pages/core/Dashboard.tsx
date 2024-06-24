@@ -1,11 +1,13 @@
 import Navigation from "../../components/Navigation";
-
+import Sidebar from "../../components/Sidebar";
 
 const Dashboard = () => {
   return (
     <>
       <Navigation title="Dashboard" />
-      <main className="dashboard"></main>
+      <main className="dashboard">
+        <Sidebar />
+      </main>
     </>
   );
 };

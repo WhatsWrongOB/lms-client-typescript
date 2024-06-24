@@ -587,6 +587,91 @@ select {
   color: white;
 }
 
+/* ___________________________Sidebar__________________ */
+
+.sidebar {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+  width: 70px;
+  background:#70542F;
+  transition: width 0.4s;
+}
+
+.sidebar nav {
+  padding: 0 8px;
+}
+
+.header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 72px;
+  padding: 0 20px 0 8px;
+  background: rgb(0 0 0 / 25%);
+}
+
+.sidebar a p {
+  position: absolute;
+  top: 50%;
+  left: 42px;
+  translate: 0 -50%;
+  opacity: 0;
+  margin: 0;
+  font-size: 15px;
+  white-space: nowrap;
+  transition: 0.175s;
+}
+
+.sidebar i {
+  font-size: 15px;
+}
+
+.header h1 {
+  left: 50px;
+  font-weight: normal;
+  font-size: 16px;
+}
+
+.sidebar:hover {
+  width: 190px;
+}
+
+.sidebar:hover :is(a p, .header h1) {
+  opacity: 1;
+}
+
+.sidebar a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 44px;
+  width: 100%;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1;
+  padding: 0 0 0 16px;
+  opacity: 0.75;
+  cursor: pointer;
+}
+
+.sidebar a:hover {
+  background: rgb(0 0 0 / 20%);
+  opacity: 1;
+}
+
+/* _______________-dASHBOARD_________________ */
+
+.dashboard{
+  height: 80vh !important;
+}
+
 /* ___________________-Footer_________________ */
 
 footer {
