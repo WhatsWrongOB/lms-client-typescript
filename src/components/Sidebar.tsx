@@ -1,6 +1,5 @@
 import {
   FaUser,
-  FaGavel,
   FaFreebsd,
   FaCodepen,
   FaSatellite,
