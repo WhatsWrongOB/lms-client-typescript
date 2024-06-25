@@ -16,7 +16,7 @@ const AdminRoute = () => {
   return currentUser?.isAdmin ? (
     <Outlet />
   ) : token ? (
-    <Navigate to="/home" />
+    <Navigate to="/lms" />
   ) : (
     <Navigate to="/" />
   );
