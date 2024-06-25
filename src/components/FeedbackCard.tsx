@@ -1,6 +1,6 @@
 
 import React from "react";
-import { FeedbackType } from "../pages/admin/Feedback";
+import { FeedbackType } from "../types";
 
 interface FeedbackItemProps {
   feedback: FeedbackType;

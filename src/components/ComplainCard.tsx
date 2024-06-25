@@ -1,5 +1,5 @@
 import React from "react";
-import { ComplainTypes } from "../pages/admin/Complain";
+import { ComplainTypes } from "../types";
 
 interface ComplainCardProps {
   complain: ComplainTypes;

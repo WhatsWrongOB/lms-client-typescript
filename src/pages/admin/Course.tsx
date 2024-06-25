@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, useEffect } from "react";
+import { useState, ChangeEvent } from "react";
 import { toast } from "react-hot-toast";
 import { FaCouch, FaCode, FaTeamspeak } from "react-icons/fa";
 import ClipLoader from "react-spinners/ClipLoader";
