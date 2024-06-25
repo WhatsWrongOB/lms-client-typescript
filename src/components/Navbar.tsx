@@ -140,7 +140,7 @@ const Navbar = () => {
           </Link>
 
           {currentUser?.isAdmin ? (
-            <Link to={"/lms/dashboard"}>
+            <Link to={"/lms/admin"}>
               <li onClick={() => setToggleMenu(false)}>Dashboard</li>
             </Link>
           ) : null}

@@ -4,41 +4,38 @@ import {
   FaFreebsd,
   FaCodepen,
   FaSatellite,
-  FaHome,
+  FaCocktail
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   return (
     <aside className="sidebar">
       <nav>
-        <a>
-          <FaHome />
-          <p>Home</p>
-        </a>
-        <a>
+         <Link className="header" to={"/lms/admin"}>
+         <img src="https://lms.giccl.edu.pk/img/logo.png" />
+          <h1>Dashboard</h1>
+        </Link>
+        <Link to="/lms/admin/students">
           <FaUser />
           <p>Students</p>
-        </a>
-
-        <a>
+        </Link>
+        <Link to="/lms/admin/attendance">
           <FaSatellite />
           <p>Attendance</p>
-        </a>
-        <a>
+        </Link>
+        <Link to="/lms/admin/courses">
+          <FaCocktail />
+          <p>Courses</p>
+        </Link>
+        <Link to={"/lms/admin/feedbacks"}>
           <FaFreebsd />
-
           <p>Feedbacks</p>
-        </a>
-        <a>
+        </Link>
+        <Link to={"/lms/admin/complains"}>
           <FaCodepen />
-
           <p>Complains</p>
-        </a>
-        <a>
-          <FaGavel />
-
-          <p>Settings</p>
-        </a>
+        </Link>
       </nav>
     </aside>
   );

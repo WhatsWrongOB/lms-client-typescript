@@ -593,11 +593,22 @@ select {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  height: 100%;
-  width: 70px;
-  background:#70542F;
+  gap: 20px;
+  height: 100vh;
+  width: 190px;
+  background: #70542f;
   transition: width 0.4s;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.sidebar_logo {
+  margin: 20px 0px;
+}
+
+.sidebar_logo p {
+  font-size: 1.1rem !important;
 }
 
 .sidebar nav {
@@ -608,10 +619,15 @@ select {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 16px;
-  height: 72px;
-  padding: 0 20px 0 8px;
-  background: rgb(0 0 0 / 25%);
+  gap: 21px;
+  height: 50px;
+  padding: 0px 0px 20px 10px;
+  margin-bottom: 20px;
+}
+
+.header img {
+  padding-top: 10px;
+  width: 30px;
 }
 
 .sidebar a p {
@@ -619,7 +635,6 @@ select {
   top: 50%;
   left: 42px;
   translate: 0 -50%;
-  opacity: 0;
   margin: 0;
   font-size: 15px;
   white-space: nowrap;
@@ -631,24 +646,17 @@ select {
 }
 
 .header h1 {
-  left: 50px;
-  font-weight: normal;
+  font-weight: bold;
   font-size: 16px;
-}
-
-.sidebar:hover {
-  width: 190px;
-}
-
-.sidebar:hover :is(a p, .header h1) {
-  opacity: 1;
+  color: white;
+  margin-top: 27px;
 }
 
 .sidebar a {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 17px;
   height: 44px;
   width: 100%;
   border-radius: 6px;
@@ -666,9 +674,27 @@ select {
   opacity: 1;
 }
 
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 70px;
+  }
+
+  .sidebar:hover {
+    width: 190px;
+  }
+
+  .sidebar a p {
+    opacity: 0;
+  }
+
+  .sidebar:hover :is(a p, .header h1) {
+    opacity: 1;
+  }
+}
+
 /* _______________-dASHBOARD_________________ */
 
-.dashboard{
+.dashboard {
   height: 80vh !important;
 }
 
@@ -909,11 +935,189 @@ footer {
 }
 
 .academics,
-.complain,
-.timetable,
-.dashboard {
+.timetable {
   height: 50vh;
   width: 100vw;
   color: black;
   background-color: #f1cfa4;
+}
+
+/* BeautifulTable.css */
+
+.table-container {
+  margin: 20px auto;
+  overflow-x: auto;
+}
+
+.beautiful-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.beautiful-table th,
+.beautiful-table td {
+  padding: 12px 20px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.beautiful-table th {
+  background-color: #a96a3f;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.beautiful-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.beautiful-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.beautiful-table td {
+  color: #555;
+}
+
+.beautiful-table th,
+.beautiful-table td {
+  transition: background-color 0.2s ease-in-out;
+}
+
+.beautiful-table th:first-child,
+.beautiful-table td:first-child {
+  border-left: 0;
+}
+
+.beautiful-table th:last-child,
+.beautiful-table td:last-child {
+  border-right: 0;
+}
+
+.dashboard {
+  width: 85% !important;
+  position: relative !important;
+  left: 200px !important;
+  background-color: white;
+  margin-top: 20px;
+}
+
+.dashboard_courses {
+  height: 45% !important;
+  border-bottom: 2px solid goldenrod;
+}
+
+.dashboard_course_form{
+  width: 100%;
+}
+
+.dashboard h1{
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #555;
+}
+
+.feedback-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.feedback-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 100%;
+  max-width: 300px;
+  box-sizing: border-box;
+  transition: transform 0.2s;
+}
+
+.feedback-card:hover {
+  transform: translateY(-5px);
+}
+
+.feedback-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 0.9em;
+  color: #555;
+}
+
+.feedback-body p {
+  margin: 5px 0;
+  font-size: 1em;
+}
+
+.feedback-body p strong {
+  color: #333;
+}
+
+
+
+/* Complain.css */
+
+
+/* Style for the list of complaints */
+.complain-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+/* Style for individual complaint cards */
+.complain-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 100%;
+  max-width: 300px;
+  box-sizing: border-box;
+  transition: transform 0.2s;
+}
+
+/* Hover effect for complaint cards */
+.complain-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Style for the complaint card header */
+.complain-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 0.9em;
+  color: #555;
+}
+
+/* Style for the complaint card body */
+.complain-body p {
+  margin: 5px 0;
+  font-size: 1em;
+}
+
+.complain-file {
+  margin-top: 10px;
+  font-size: 0.9em;
+}
+
+.complain-file a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.complain-file a:hover {
+  text-decoration: underline;
 }

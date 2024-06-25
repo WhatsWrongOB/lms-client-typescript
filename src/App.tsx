@@ -11,17 +11,12 @@ import {
 } from "./pages/auth";
 import CoreApp from "./pages/core";
 import Error from "./components/Error";
-
+import AdminApp from "./pages/admin";
+import Loader from "./components/Loader";
 
 const App = () => {
   return (
-    <Suspense
-      fallback={
-        <div className="center">
-          <div className="loader"></div>
-        </div>
-      }
-    >
+    <Suspense fallback={<Loader />}>
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
@@ -31,6 +26,7 @@ const App = () => {
         <Route path="/forget-password" element={<ForgetForm />} />
         <Route path="/reset-password" element={<Reset />} />
         <Route path="/lms/*" element={<CoreApp />} />
+        <Route path="/lms/admin/*" element={<AdminApp />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </Suspense>
