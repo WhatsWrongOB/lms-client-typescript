@@ -601,6 +601,7 @@ select {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 4;
 }
 
 .sidebar_logo {
@@ -690,6 +691,8 @@ select {
   .sidebar:hover :is(a p, .header h1) {
     opacity: 1;
   }
+
+  
 }
 
 /* _______________-dASHBOARD_________________ */
@@ -997,8 +1000,8 @@ footer {
 
 .dashboard {
   width: 85% !important;
-  position: relative !important;
-  left: 200px !important;
+  position: relative;
+  left: 200px;
   background-color: white;
   margin-top: 20px;
 }
@@ -1120,4 +1123,11 @@ footer {
 
 .complain-file a:hover {
   text-decoration: underline;
+}
+
+
+@media screen and (max-width:700px){
+  .dashboard{
+    left: 75px !important;
+  }
 }
