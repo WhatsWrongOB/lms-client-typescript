@@ -8,8 +8,6 @@ import { FcDepartment } from "react-icons/fc";
 import axios from "axios";
 import { ClipLoader } from "react-spinners";
 import {
-  useGetToken,
-  useGetUser,
   useHandleAxiosError,
   useSetToken,
   useSetUser,
