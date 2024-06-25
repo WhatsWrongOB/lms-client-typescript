@@ -5,6 +5,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import axios from "axios";
 import { useGetToken, useHandleAxiosError } from "../../hooks";
 import CourseTable from "../../components/CourseTable";
+import { useStore } from "../../context";
 
 export interface CourseDetails {
   _id?: string;
@@ -14,13 +15,13 @@ export interface CourseDetails {
 }
 
 const Course = () => {
+  const { courses } = useStore();
   const [loading, setLoading] = useState<boolean>(false);
   const [formData, setFormData] = useState<CourseDetails>({
     courseName: "",
     courseCode: "",
     teacherName: "",
   });
-  const [courses, setCourses] = useState<CourseDetails[]>([]);
   const columns = ["Course Name", "Course Code", "Teacher Name"];
 
   const handleChange = (
@@ -37,15 +38,11 @@ const Course = () => {
     e: React.FormEvent<HTMLFormElement>
   ): Promise<void> => {
     e.preventDefault();
-
     const token = useGetToken();
     if (!token) return;
-
     const { courseName, courseCode, teacherName } = formData;
-
     try {
       setLoading(true);
-
       const { data } = await axios.post(
         `${import.meta.env.VITE_SERVER}/api/course`,
         { courseName, courseCode, teacherName },
@@ -56,7 +53,6 @@ const Course = () => {
           },
         }
       );
-
       if (data?.success) {
         toast.success(data.message);
         setFormData({ courseName: "", courseCode: "", teacherName: "" });
@@ -67,29 +63,6 @@ const Course = () => {
       setLoading(false);
     }
   };
-
-  useEffect(() => {
-    const token = useGetToken();
-
-    if (!token) return;
-
-    const fetchCourses = async (): Promise<void> => {
-      try {
-        const { data } = await axios.get(
-          `${import.meta.env.VITE_SERVER}/api/course`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        if (data) setCourses(data.course);
-      } catch (error: any) {
-        useHandleAxiosError(error);
-      }
-    };
-    fetchCourses();
-  }, [handleSubmit]);
 
   return (
     <>

@@ -2,8 +2,8 @@ import { Route, Routes } from "react-router-dom";
 import { AdminRoute } from "../../routes";
 import { Suspense, lazy } from "react";
 import Course from "./Course";
-import Loader from "../../components/Loader";
 import DashNav from "../../components/DashNav";
+import "../../styles/admin.css"
 
 const Dashboard = lazy(() => import("./Dashboard"));
 const Attendance = lazy(() => import("./Attendance"));
@@ -13,8 +13,14 @@ const Student = lazy(() => import("./Student"));
 
 const AdminApp = () => {
   return (
-    <Suspense fallback={<Loader />}>
-      <DashNav/>
+    <Suspense
+      fallback={
+        <div className="center">
+          <div className="loader"></div>
+        </div>
+      }
+    >
+      <DashNav />
       <Routes>
         <Route element={<AdminRoute />}>
           <Route path="/" element={<Dashboard />} />

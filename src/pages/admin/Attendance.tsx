@@ -1,60 +1,15 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import axios from "axios";
 import { useGetToken, useHandleAxiosError } from "../../hooks";
-import { User } from "../../types";
-import { CourseDetails } from "./Course";
 import { toast } from "react-hot-toast";
+import { useStore } from "../../context";
 
 const Attendance = () => {
-  const [students, setStudents] = useState<User[]>([]);
-  const [courses, setCourses] = useState<CourseDetails[]>([]);
+  const { students, courses, } = useStore();
   const [selectedCourse, setSelectedCourse] = useState<string>("");
   const [attendance, setAttendance] = useState<{ [key: string]: string }>({});
 
   const token = useGetToken();
-
-  useEffect(() => {
-    if (!token) return;
-
-    const fetchStudents = async (): Promise<void> => {
-      try {
-        const { data } = await axios.get(
-          `${import.meta.env.VITE_SERVER}/api/users`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-
-        if (data) setStudents(data);
-      } catch (error: any) {
-        useHandleAxiosError(error);
-      }
-    };
-    fetchStudents();
-  }, [token]);
-
-  useEffect(() => {
-    if (!token) return;
-
-    const fetchCourses = async (): Promise<void> => {
-      try {
-        const { data } = await axios.get(
-          `${import.meta.env.VITE_SERVER}/api/course`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        if (data) setCourses(data.course);
-      } catch (error: any) {
-        useHandleAxiosError(error);
-      }
-    };
-    fetchCourses();
-  }, [token]);
 
   const handleAttendanceChange = (studentId: string, present: boolean) => {
     const status = present ? "present" : "absent";

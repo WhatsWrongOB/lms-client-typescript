@@ -2,6 +2,7 @@ import { lazy } from "react";
 
 import "../../styles/form.css";
 
+
 const Login = lazy(() => import("./Login"));
 const Register = lazy(() => import("./Register"));
 const Forget = lazy(() => import("./Forget"));

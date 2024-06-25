@@ -1,9 +1,9 @@
 import React from 'react';
-import { User } from '../types';
+import { StudentType, User } from '../types';
 
 interface TableProps {
   columns: string[];
-  data: User[];
+  data: StudentType[];
 }
 
 const Table: React.FC<TableProps> = ({ columns, data }) => {

@@ -21,7 +21,7 @@ const DashNav = () => {
         </div>
 
         <ul className={toggleMenu ? "menu_active" : ""}>
-          <Link to={"/lms"}>
+          <Link to={"/lms/admin"}>
             <li onClick={() => setToggleMenu(false)}>Home</li>
           </Link>
 

@@ -1,45 +1,8 @@
-import { useEffect, useState } from "react";
-import { useGetToken, useHandleAxiosError } from "../../hooks";
-import axios from "axios";
 import ComplainCard from "../../components/ComplainCard";
-
-export interface ComplainTypes {
-  _id: string;
-  topic: number;
-  description: string;
-  file?: string;
-  user: {
-    _id: string;
-    username: string;
-  };
-}
+import { useStore } from "../../context";
 
 const Complain = () => {
-  const [complain, setComplain] = useState<ComplainTypes[]>([]);
-
-  useEffect(() => {
-    const token = useGetToken();
-
-    if (!token) return;
-
-    const fetchComplain = async (): Promise<void> => {
-      try {
-        const { data } = await axios.get(
-          `${import.meta.env.VITE_SERVER}/api/complain`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        if (data) setComplain(data.complain);
-      } catch (error: any) {
-        useHandleAxiosError(error);
-      }
-    };
-    fetchComplain();
-  }, []);
-
+  const { complain } = useStore();
 
   return (
     <div className="dashboard">

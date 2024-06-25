@@ -12,11 +12,17 @@ import {
 import CoreApp from "./pages/core";
 import Error from "./components/Error";
 import AdminApp from "./pages/admin";
-import Loader from "./components/Loader";
+
 
 const App = () => {
   return (
-    <Suspense fallback={<Loader />}>
+    <Suspense
+      fallback={
+        <div className="center">
+          <div className="loader"></div>
+        </div>
+      }
+    >
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
