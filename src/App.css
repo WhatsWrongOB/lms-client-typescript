@@ -931,7 +931,7 @@ footer {
 
 .academics,
 .timetable {
-  height: 70vh;
+  height: auto;
   width: 100vw;
   color: black;
   display: flex;
@@ -958,4 +958,114 @@ footer {
 
 .dash_nav ul {
   background-color: white;
+}
+
+.academics_container {
+  width: 85%;
+  margin: 40px 0px;
+}
+
+.academics_heading {
+  width: 97%;
+  background-color: #a96a3f;
+  color: white;
+  font-size: 1.2rem;
+  padding: 16px;
+}
+
+.academics_inner_container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.academics_card {
+  min-width: 560px;
+  height: 110px;
+  display: flex;
+  background-color: tan;
+  border:1px solid tan;
+}
+
+.academics_card_left {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.academics_card_left p {
+  font-size: 1.2rem;
+  font-weight: 550;
+  color: red;
+}
+
+.academics_card_right {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.academics_card_right h5 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.academics_card_right p {
+  line-height: 10px;
+}
+
+.overall_percent {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+  background-color: tan;
+  padding: 7px 0px;
+}
+
+.overall_percent strong{
+  color: red;
+  font-size: 1.4rem;
+  font-weight: 550;
+}
+
+.academics_card a{
+  color: blue;
+  text-decoration: underline;
+}
+
+.subject_academics{
+  height: 70vh;
+  background-color: #f1cfa4;
+
+}
+
+@media screen and (max-width:600px) {
+    .academics_card{
+      min-width: 400px;
+    }
+
+    .academics_container{
+      width: 95%;
+    }
+}
+
+@media screen and (max-width:500px) {
+
+  .overall_percent{
+    width: 99%;
+  }
+
+  .academics_card{
+    min-width: 350px;
+  }
+
+  .academics_heading{
+    width: 90%;
+  }
 }
