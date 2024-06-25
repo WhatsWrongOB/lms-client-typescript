@@ -4,6 +4,9 @@ import { Suspense, lazy } from "react";
 import Course from "./Course";
 import Loader from "../../components/Loader";
 import Sidebar from "../../components/Sidebar";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import DashNav from "../../components/DashNav";
 
 const Dashboard = lazy(() => import("./Dashboard"));
 const Attendance = lazy(() => import("./Attendance"));
@@ -14,7 +17,7 @@ const Student = lazy(() => import("./Student"));
 const AdminApp = () => {
   return (
     <Suspense fallback={<Loader />}>
-      <Sidebar />
+      <DashNav/>
       <Routes>
         <Route element={<AdminRoute />}>
           <Route path="/" element={<Dashboard />} />

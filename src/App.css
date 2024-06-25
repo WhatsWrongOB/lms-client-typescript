@@ -596,13 +596,12 @@ select {
   flex-direction: column;
   gap: 20px;
   height: 100vh;
-  width: 190px;
+  width: 200px;
   background: #70542f;
   transition: width 0.4s;
   position: fixed;
-  top: 0;
   left: 0;
-  z-index: 4;
+  top: 0;
 }
 
 .sidebar_logo {
@@ -692,14 +691,6 @@ select {
   .sidebar:hover :is(a p, .header h1) {
     opacity: 1;
   }
-
-  
-}
-
-/* _______________-dASHBOARD_________________ */
-
-.dashboard {
-  height: 80vh !important;
 }
 
 /* ___________________-Footer_________________ */
@@ -943,9 +934,9 @@ footer {
   height: 70vh;
   width: 100vw;
   color: black;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #f1cfa4;
 }
 
@@ -1003,11 +994,7 @@ footer {
 }
 
 .dashboard {
-  width: 85% !important;
-  position: relative;
-  left: 200px;
   background-color: white;
-  margin-top: 20px;
 }
 
 .dashboard_courses {
@@ -1015,11 +1002,11 @@ footer {
   border-bottom: 2px solid goldenrod;
 }
 
-.dashboard_course_form{
+.dashboard_course_form {
   width: 100%;
 }
 
-.dashboard h1{
+.dashboard h1 {
   font-size: 1.5rem;
   font-weight: 500;
   color: #555;
@@ -1027,6 +1014,8 @@ footer {
 
 .feedback-list {
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
   gap: 20px;
   max-width: 1200px;
@@ -1067,10 +1056,7 @@ footer {
   color: #333;
 }
 
-
-
 /* Complain.css */
-
 
 /* Style for the list of complaints */
 .complain-list {
@@ -1129,13 +1115,11 @@ footer {
   text-decoration: underline;
 }
 
-
-@media screen and (max-width:700px){
-  .dashboard{
+@media screen and (max-width: 700px) {
+  .dashboard {
     left: 75px !important;
   }
 }
-
 
 /* Attendance.css */
 
@@ -1226,13 +1210,11 @@ footer {
   text-align: center;
 }
 
-@media screen and (max-width:600px) {
-  .academics-container{
-   width: 90%;
+@media screen and (max-width: 600px) {
+  .academics-container {
+    width: 90%;
   }
-  
 }
-
 
 /* Main container for the Dashboard */
 .dashboard {
@@ -1275,7 +1257,7 @@ footer {
 .dashboard-card p {
   font-size: 24px;
   font-weight: bold;
-  color: #007BFF;
+  color: #007bff;
 }
 
 /* Responsive design */
@@ -1406,4 +1388,27 @@ footer {
 
 .submit-attendance-btn:not(:disabled):hover {
   background-color: #0056b3;
+}
+
+.dash_flex {
+  display: flex;
+}
+
+.dash_nav {
+  background-color: white;
+  border: none;
+  margin-bottom: 30px;
+  height: 90px;
+}
+
+.dash_logo {
+  color: #000;
+}
+
+.dash_nav ul li {
+  color: #000;
+}
+
+.dash_nav ul {
+  background-color: white;
 }

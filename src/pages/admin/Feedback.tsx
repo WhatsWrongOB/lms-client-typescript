@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useGetToken, useHandleAxiosError } from "../../hooks";
 import axios from "axios";
 import FeedbackCard from "../../components/FeedbackCard";
+import Sidebar from "../../components/Sidebar";
 
 export interface FeedbackType {
   _id: string;
