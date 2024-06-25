@@ -3,9 +3,6 @@ import { AdminRoute } from "../../routes";
 import { Suspense, lazy } from "react";
 import Course from "./Course";
 import Loader from "../../components/Loader";
-import Sidebar from "../../components/Sidebar";
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
 import DashNav from "../../components/DashNav";
 
 const Dashboard = lazy(() => import("./Dashboard"));

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useGetToken, useHandleAxiosError } from "../../hooks";
-import Sidebar from "../../components/Sidebar";
 
 const Dashboard = () => {
   const [feedbackCount, setFeedbackCount] = useState<number | null>(null);
