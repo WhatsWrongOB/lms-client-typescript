@@ -7,6 +7,7 @@ import { useGetToken, useHandleAxiosError } from "../../hooks";
 import CourseTable from "../../components/CourseTable";
 
 export interface CourseDetails {
+  _id?: string;
   courseName: string;
   courseCode: string;
   teacherName: string;
@@ -31,8 +32,6 @@ const Course = () => {
       [name]: value,
     }));
   };
-
- 
 
   const handleSubmit = async (
     e: React.FormEvent<HTMLFormElement>
@@ -69,7 +68,6 @@ const Course = () => {
     }
   };
 
-
   useEffect(() => {
     const token = useGetToken();
 
@@ -97,7 +95,10 @@ const Course = () => {
     <>
       <main className="auth lms_auth dashboard dashboard_courses">
         <div className="auth_container lms_auth_container">
-          <form className="auth_form lms_form dashboard_course_form" onSubmit={handleSubmit}>
+          <form
+            className="auth_form lms_form dashboard_course_form"
+            onSubmit={handleSubmit}
+          >
             <div className="group">
               <FaCouch size={15} color="gray" />
               <input

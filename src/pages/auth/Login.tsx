@@ -7,7 +7,13 @@ import { toast } from "react-hot-toast";
 import { FcDepartment } from "react-icons/fc";
 import axios from "axios";
 import { ClipLoader } from "react-spinners";
-import { useHandleAxiosError, useSetToken, useSetUser } from "../../hooks";
+import {
+  useGetToken,
+  useGetUser,
+  useHandleAxiosError,
+  useSetToken,
+  useSetUser,
+} from "../../hooks";
 
 interface UserDetails {
   email: string;
@@ -41,6 +47,7 @@ const Login = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
+
     const { department, email, password } = formData;
 
     if (!department) {

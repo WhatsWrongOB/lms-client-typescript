@@ -19,7 +19,7 @@ const AdminApp = () => {
         <Route element={<AdminRoute />}>
           <Route path="/" element={<Dashboard />} />
           <Route path="/courses" element={<Course />} />
-          <Route path="/attendances" element={<Attendance />} />
+          <Route path="/attendance" element={<Attendance />} />
           <Route path="/feedbacks" element={<Feedback />} />
           <Route path="/complains" element={<Complain />} />
           <Route path="/students" element={<Student />} />
