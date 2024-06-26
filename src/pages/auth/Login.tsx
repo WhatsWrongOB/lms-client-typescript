@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, FormEvent } from "react";
+import { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { FaUser, FaKey } from "react-icons/fa";
 import user from "/user.svg";
@@ -8,6 +8,7 @@ import { FcDepartment } from "react-icons/fc";
 import axios from "axios";
 import { ClipLoader } from "react-spinners";
 import {
+  useGetToken,
   useHandleAxiosError,
   useSetToken,
   useSetUser,
@@ -20,6 +21,8 @@ interface UserDetails {
 }
 
 const Login = () => {
+  const token = useGetToken();
+
   const navigate = useNavigate();
   const [active, setActive] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
@@ -28,6 +31,12 @@ const Login = () => {
     department: "",
     password: "",
   });
+
+  useEffect(() => {
+    if (token) {
+      navigate("/lms");
+    }
+  }, [token, navigate]);
 
   const handleShowPass = (): void => {
     setActive(!active);
@@ -45,6 +54,8 @@ const Login = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
+
+    if (token) navigate("/lms");
 
     const { department, email, password } = formData;
 
