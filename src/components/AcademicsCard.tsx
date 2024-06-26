@@ -12,7 +12,9 @@ const AcademicsCard = ({ course }: { course: CourseType }) => {
           {course.courseName} ({course.courseCode})
         </h5>
         <p>{course.teacherName}</p>
-        <Link to={`/lms/subject-academics?courseCode=${course.courseCode}&courseName=${course.courseName}`}>
+        <Link
+          to={`/lms/subject-academics?courseCode=${course.courseCode}&courseName=${course.courseName}&courseId=${course._id}`}
+        >
           Explore
         </Link>
       </div>

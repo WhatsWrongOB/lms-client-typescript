@@ -60,3 +60,17 @@ export interface ContextType {
   feedbackLoading: boolean;
   complainLoading: boolean;
 }
+
+export interface AssignmentMarks {
+  assignmentNumber: number;
+  marks: number;
+}
+
+export interface MarksTypes {
+  _id: string;
+  assignmentMarks: AssignmentMarks[];
+  totalAcademicsMarks: number;
+  presentationMarks: number;
+  totalAssignmentMarks: number;
+  midMarks: number;
+}
