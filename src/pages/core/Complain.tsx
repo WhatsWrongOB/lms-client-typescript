@@ -1,18 +1,20 @@
 import { toast } from "react-hot-toast";
 import Navigation from "../../components/Navigation";
 import axios from "axios";
-import { useGetToken, useHandleAxiosError } from "../../hooks";
+import {
+  useAxiosConfiguration,
+  useHandleAxiosError,
+} from "../../hooks";
 import { ChangeEvent, useState } from "react";
 import { ClipLoader } from "react-spinners";
 
 interface ComplainDetails {
   topic: string;
   description: string;
-  file: string; // Storing the data URL
+  file: string; 
 }
 
 const Complain = () => {
-  const token = useGetToken();
   const [formData, setFormData] = useState<ComplainDetails>({
     topic: "",
     description: "",
@@ -65,12 +67,7 @@ const Complain = () => {
       const { data } = await axios.post(
         `${import.meta.env.VITE_SERVER}/api/complain`,
         { topic, description, file },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        }
+        useAxiosConfiguration()
       );
 
       if (data?.success) {

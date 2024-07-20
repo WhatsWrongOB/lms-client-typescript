@@ -33,3 +33,15 @@ export const useHandleAxiosError = (error: any) => {
     }
 
 };
+
+const token = useGetToken()
+
+export const useAxiosConfiguration = () => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+        },
+    }
+    return config;
+}

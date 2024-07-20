@@ -3,7 +3,7 @@ import { ChangeEvent, useRef, useState } from "react";
 import { toast } from "react-hot-toast";
 import { ClipLoader } from "react-spinners";
 import {
-  useGetToken,
+  useAxiosConfiguration,
   useGetUser,
   useHandleAxiosError,
   useSetUser,
@@ -13,7 +13,6 @@ import Navigation from "../../components/Navigation";
 
 const UpdateProfile = () => {
   const { name } = useParams();
-  const token = useGetToken();
   const user = useGetUser();
   const [username, setUsername] = useState<string | undefined>(user?.username);
   const [department, setDepartment] = useState<string | undefined>(
@@ -50,12 +49,7 @@ const UpdateProfile = () => {
       const { data } = await axios.patch(
         `${import.meta.env.VITE_SERVER}/api/update-profile`,
         { username, profilePicture, department },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        }
+        useAxiosConfiguration()
       );
 
       if (data?.success) {

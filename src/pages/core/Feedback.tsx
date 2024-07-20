@@ -4,10 +4,9 @@ import StarRating from "../../components/Star";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 import { ClipLoader } from "react-spinners";
-import { useGetToken, useHandleAxiosError } from "../../hooks";
+import { useAxiosConfiguration, useHandleAxiosError } from "../../hooks";
 
 const Feedback = () => {
-  const token = useGetToken();
   const [rating, setRating] = useState<number>(0);
   const [description, setDescription] = useState<string>("");
   const [suggestion, setSuggestion] = useState<string>("");
@@ -32,12 +31,7 @@ const Feedback = () => {
       const { data } = await axios.post(
         `${import.meta.env.VITE_SERVER}/api/feedback`,
         { rating, description, suggestion },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        }
+        useAxiosConfiguration()
       );
       if (data?.success) {
         toast.success(data.message);

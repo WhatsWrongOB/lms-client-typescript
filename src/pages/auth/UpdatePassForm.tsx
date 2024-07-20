@@ -4,7 +4,11 @@ import { FaKey } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import axios from "axios";
-import { useGetToken, useGetUser, useHandleAxiosError } from "../../hooks";
+import {
+  useAxiosConfiguration,
+  useGetUser,
+  useHandleAxiosError,
+} from "../../hooks";
 import Navigation from "../../components/Navigation";
 
 interface UserDetails {
@@ -14,7 +18,6 @@ interface UserDetails {
 }
 
 const UpdatePassForm = () => {
-  const token = useGetToken();
   const user = useGetUser();
   const [loading, setLoading] = useState<boolean>(false);
   const [formData, setFormData] = useState<UserDetails>({
@@ -62,12 +65,7 @@ const UpdatePassForm = () => {
       const { data } = await axios.post(
         `${import.meta.env.VITE_SERVER}/api/update-password/${id}`,
         { curPass, newPass },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        }
+        useAxiosConfiguration()
       );
 
       if (data?.success) {
@@ -76,7 +74,6 @@ const UpdatePassForm = () => {
       }
     } catch (error: any) {
       useHandleAxiosError(error);
-
     } finally {
       setLoading(false);
     }
