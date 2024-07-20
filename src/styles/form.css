@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 .auth {
   width: 100%;
   height: 100vh;
@@ -66,8 +68,10 @@
   border-radius: 25px;
   outline: none;
   border: none;
-  font-size: 1.16rem;
+  font-size: 0.98rem;
+  font-weight: 500;
   background-color: #e7e7e7;
+  font-family: "Poppins";
 }
 
 input:-webkit-autofill {
@@ -87,9 +91,10 @@ input:-webkit-autofill {
   color: white;
   background-color: #57b846;
   border: none;
-  font-size: 1.16rem;
+  font-size: 1rem;
   cursor: pointer;
   transition: all ease-in-out 0.3s;
+  font-family: "Poppins";
 }
 
 .auth_form button:hover {
@@ -102,15 +107,17 @@ input:-webkit-autofill {
 
 .forget {
   color: rgb(102, 98, 98);
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   text-align: center;
+  font-family: "Poppins";
 }
 
 .forget a {
   color: red;
-  font-size: 1.15rem;
+  font-size: 0.9rem;
   font-weight: 550;
   transition: all ease-in-out 0.1s;
+  font-family: "Poppins";
 }
 
 .forget a:focus {
@@ -118,7 +125,7 @@ input:-webkit-autofill {
 }
 
 .or {
-  font-size: 1.05rem;
+  font-size: 0.9rem;
   font-weight: 550;
 }
 
@@ -134,17 +141,7 @@ input:-webkit-autofill {
   }
 
   .auth_upper h1 {
-    font-size: 1.8rem;
-  }
-
-  .auth_form input,
-  .auth_form select,
-  .forget {
-    font-size: 1.05rem;
-  }
-
-  .forget a {
-    font-size: 1rem;
+    font-size: 1.7rem;
   }
 
   .auth_upper div {
@@ -155,7 +152,7 @@ input:-webkit-autofill {
 
 @media screen and (max-width: 420px) {
   .auth_container {
-    width: 380px;
+    width: 360px;
   }
 
   .auth_upper h1 {
@@ -178,20 +175,16 @@ input:-webkit-autofill {
   }
 
   .auth_upper h1 {
-    font-size: 1.5rem;
-  }
-
-  .auth_upper h1 {
     font-size: 1.4rem;
   }
 
   .auth_form input,
   .forget {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
 
   .auth_form button {
-    font-size: 1.05rem;
+    font-size: 0.9rem;
   }
 }
 
