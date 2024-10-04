@@ -35,7 +35,7 @@ To run this project locally, follow these steps:
     ```
 2. Navigate to the project directory:
     ```bash
-    cd LMS-Frontend
+    cd lsm-client-typescript
     ```
 3. Install dependencies:
     ```bash
@@ -48,7 +48,7 @@ To run this project locally, follow these steps:
 
 ## 🌐 Usage
 
-Simply open your browser and navigate to `http://localhost:3000` to view the application.
+Simply open your browser and navigate to `http://localhost:5173` to view the application.
 
 ## 📄 License
 
